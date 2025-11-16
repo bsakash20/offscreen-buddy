@@ -1,0 +1,37 @@
+{
+  "extends": "expo-module-scripts/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./*"],
+      "@/app/*": ["./app/*"],
+      "@/components/*": ["./components/*"],
+      "@/assets/*": ["./app/assets/*"],
+      "@/constants/*": ["./app/constants/*"],
+      "@/contexts/*": ["./app/contexts/*"]
+    },
+    "lib": [
+      "ES2017",
+      "DOM"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.config.js",
+    "**/*.config.ts",
+    "eslint.config.*",
+    "babel.config.*",
+    "metro.config.*",
+    "jest.config.*"
+  ]
+}
