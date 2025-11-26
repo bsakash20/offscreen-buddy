@@ -4,7 +4,7 @@ const expoConfig = require('eslint-config-expo/flat');
 module.exports = defineConfig([
   expoConfig,
   {
-    ignores: ["dist/*", "node_modules/*", ".expo/*", "*.config.js", "app/**"],
+    ignores: ["dist/*", "node_modules/*", ".expo/*", "*.config.js"],
     rules: {
       // Add project-specific rules (only using built-in ESLint rules)
       "prefer-const": "error",

@@ -1,13 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from "expo-notifications";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { AppState, Platform } from "react-native";
 import createContextHook from "@nkzw/create-context-hook";
 import { HapticUtils } from "@/utils/HapticManager";
 import { SoundUtils } from "@/utils/SoundManager";
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import {
   FUNNY_MESSAGES,
   SERIOUS_MESSAGES,
+  MOTIVATIONAL_MESSAGES,
   DEFAULT_NOTIFICATION_FREQUENCY,
 } from "@/assets/constants/notifications";
 
@@ -33,6 +35,10 @@ interface StoredSettings {
   notificationFrequency?: number;
   funnyMode?: boolean;
   notificationsEnabled?: boolean;
+  timerLockEnabled?: boolean;
+  smartNotificationsEnabled?: boolean;
+  premiumTier?: 'free' | 'pro';
+  emergencyOverridePin?: string;
 }
 
 interface StoredTimerState {
@@ -49,6 +55,11 @@ export type TimerSettings = {
   funnyMode: boolean;
   theme: ThemeMode;
   notificationsEnabled: boolean;
+  // Pro features
+  timerLockEnabled: boolean;
+  smartNotificationsEnabled: boolean;
+  premiumTier: 'free' | 'pro';
+  emergencyOverridePin?: string;
 };
 
 export type TimerState = {
@@ -76,12 +87,44 @@ Notifications.setNotificationHandler({
 });
 
 export const [TimerProvider, useTimer] = createContextHook(() => {
+  // Use proper SupabaseAuth hook - circular dependency resolved
+  const supabaseAuth = useSupabaseAuth();
+
+  // Memoize derived values to prevent infinite re-renders with safe fallback
+  const hasPremiumAccess = useMemo(() => supabaseAuth.subscription?.tier === 'pro', [supabaseAuth.subscription?.tier]);
+  const features = useMemo(() => supabaseAuth.subscription?.features || [], [supabaseAuth.subscription?.features]);
+  const currentTier = useMemo(() => supabaseAuth.subscription?.tier || 'free', [supabaseAuth.subscription?.tier]);
+
   const [settings, setSettings] = useState<TimerSettings>({
     notificationFrequency: DEFAULT_NOTIFICATION_FREQUENCY,
     funnyMode: true,
     theme: "dark",
     notificationsEnabled: false,
+    timerLockEnabled: hasPremiumAccess && features.includes('timer_lock'),
+    smartNotificationsEnabled: hasPremiumAccess && features.includes('smart_notifications'),
+    premiumTier: currentTier,
   });
+
+  // Update settings when subscription changes
+  useEffect(() => {
+    const newTierLockEnabled = hasPremiumAccess && features.includes('timer_lock');
+    const newSmartNotificationsEnabled = hasPremiumAccess && features.includes('smart_notifications');
+    const newPremiumTier = currentTier;
+
+    // Only update if values have actually changed to prevent unnecessary re-renders
+    if (
+      settings.timerLockEnabled !== newTierLockEnabled ||
+      settings.smartNotificationsEnabled !== newSmartNotificationsEnabled ||
+      settings.premiumTier !== newPremiumTier
+    ) {
+      setSettings(prev => ({
+        ...prev,
+        timerLockEnabled: newTierLockEnabled,
+        smartNotificationsEnabled: newSmartNotificationsEnabled,
+        premiumTier: newPremiumTier,
+      }));
+    }
+  }, [supabaseAuth.subscription, hasPremiumAccess, features, currentTier, settings.timerLockEnabled, settings.smartNotificationsEnabled, settings.premiumTier]);
 
   const [timerState, setTimerState] = useState<TimerState>({
     isRunning: false,
@@ -94,7 +137,7 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
 
   const notificationIntervalRef = useRef<number | null>(null);
   const timerIntervalRef = useRef<number | null>(null);
-  const appState = useRef(AppState.currentState);
+  const currentAppStateRef = useRef(AppState.currentState);
   const [isAppActive, setIsAppActive] = useState(true);
 
   useEffect(() => {
@@ -103,14 +146,14 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
     requestNotificationPermissions();
 
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      const wasActive = appState.current === "active";
+      const wasActive = currentAppStateRef.current === "active";
       const isActive = nextAppState === "active";
 
       console.log(
-        `App state changed: ${appState.current} -> ${nextAppState}`,
+        `App state changed: ${currentAppStateRef.current} -> ${nextAppState}`,
       );
 
-      appState.current = nextAppState;
+      currentAppStateRef.current = nextAppState;
       setIsAppActive(isActive);
 
       // Use functional state update to avoid stale closures
@@ -209,6 +252,10 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
               funnyMode: typeof parsed.funnyMode === 'boolean' ? parsed.funnyMode : true,
               theme: 'dark',
               notificationsEnabled: typeof parsed.notificationsEnabled === 'boolean' ? parsed.notificationsEnabled : false,
+              timerLockEnabled: typeof parsed.timerLockEnabled === 'boolean' ? parsed.timerLockEnabled : false,
+              smartNotificationsEnabled: typeof parsed.smartNotificationsEnabled === 'boolean' ? parsed.smartNotificationsEnabled : false,
+              premiumTier: (parsed.premiumTier === 'free' || parsed.premiumTier === 'pro') ? parsed.premiumTier : 'free',
+              emergencyOverridePin: typeof parsed.emergencyOverridePin === 'string' ? parsed.emergencyOverridePin : undefined,
             };
             setSettings(validatedSettings);
           }
@@ -245,13 +292,13 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
       if (stored) {
         try {
           const state: StoredTimerState = JSON.parse(stored);
-          
+
           // Comprehensive state validation
           if (state && typeof state === 'object' &&
-              typeof state.isRunning === 'boolean' &&
-              typeof state.duration === 'number' && state.duration >= 0 &&
-              typeof state.remainingTime === 'number' && state.remainingTime >= 0) {
-            
+            typeof state.isRunning === 'boolean' &&
+            typeof state.duration === 'number' && state.duration >= 0 &&
+            typeof state.remainingTime === 'number' && state.remainingTime >= 0) {
+
             // Handle running state with startTime validation
             if (state.isRunning && state.startTime && typeof state.startTime === 'number') {
               const elapsed = Date.now() - state.startTime;
@@ -316,28 +363,79 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
   };
 
   const sendNotification = async () => {
-    if (Platform.OS === "web") {
-      console.log("Notification:", getRandomMessage());
-      return;
-    }
-
     try {
+      // Smart Notifications: Only send when phone is unlocked and app is active
+      if (settings.smartNotificationsEnabled && settings.premiumTier !== 'free') {
+        // Check if app is in active state (phone unlocked)
+        if (AppState.currentState !== 'active') {
+          console.log('Smart notification blocked - phone not active');
+          return;
+        }
+
+        // Additional check: if timer was recently started, give user a grace period
+        if (timerState.startTime && Date.now() - timerState.startTime < 5000) {
+          console.log('Smart notification blocked - grace period');
+          return;
+        }
+      }
+
+      if (Platform.OS === "web") {
+        console.log("Notification:", getRandomMessage());
+        return;
+      }
+
+      // Enhanced message selection based on timer progress
+      const message = getEnhancedMessage();
+
+      // Validate notification permissions before sending
+      const { status } = await Notifications.getPermissionsAsync();
+      if (status !== 'granted') {
+        console.warn('Notification permissions not granted, skipping notification');
+        return;
+      }
+
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: "ZenLock Reminder 🔒",
-          body: getRandomMessage(),
+          title: "OffScreen Buddy Reminder 🔒",
+          body: message,
           sound: true,
         },
         trigger: null,
       });
     } catch (error) {
       console.error("Failed to send notification:", error);
+      // Don't throw error to prevent breaking the notification loop
     }
   };
 
   const getRandomMessage = () => {
     const messages = settings.funnyMode ? FUNNY_MESSAGES : SERIOUS_MESSAGES;
     return messages[Math.floor(Math.random() * messages.length)];
+  };
+
+  const getEnhancedMessage = () => {
+    if (settings.smartNotificationsEnabled && settings.premiumTier !== 'free') {
+      // Smart message selection based on timer progress
+      const timerProgress = timerState.duration > 0 ? 1 - (timerState.remainingTime / timerState.duration) : 0;
+
+      // Early phase (0-30%): More encouraging
+      if (timerProgress < 0.3) {
+        return MOTIVATIONAL_MESSAGES[Math.floor(Math.random() * MOTIVATIONAL_MESSAGES.length)];
+      }
+
+      // Middle phase (30-70%): Mix of encouraging and category
+      if (timerProgress < 0.7) {
+        const allMessages = [...(settings.funnyMode ? FUNNY_MESSAGES : SERIOUS_MESSAGES), ...MOTIVATIONAL_MESSAGES];
+        return allMessages[Math.floor(Math.random() * allMessages.length)];
+      }
+
+      // Late phase (70%+): More direct/roast messages
+      const messages = settings.funnyMode ? FUNNY_MESSAGES : SERIOUS_MESSAGES;
+      return messages[Math.floor(Math.random() * messages.length)];
+    }
+
+    // Fallback to regular message selection
+    return getRandomMessage();
   };
 
   const startNotificationLoop = useCallback(() => {
@@ -400,6 +498,12 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
   );
 
   const stopTimer = useCallback(() => {
+    // Check if Timer Lock Mode is enabled
+    if (settings.timerLockEnabled && settings.premiumTier !== 'free' && timerState.isRunning) {
+      console.log('Stop blocked by Timer Lock Mode');
+      return;
+    }
+
     clearAllIntervals();
     setTimerState({
       isRunning: false,
@@ -409,7 +513,7 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
       startTime: null,
       pauseTime: null,
     });
-  }, []);
+  }, [settings.timerLockEnabled, settings.premiumTier, timerState.isRunning]);
 
   const completeTimer = useCallback(async () => {
     clearAllIntervals();
@@ -461,6 +565,12 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
 
   const pauseTimer = useCallback(() => {
     if (timerState.isRunning && !timerState.isPaused) {
+      // Check if Timer Lock Mode is enabled
+      if (settings.timerLockEnabled && settings.premiumTier !== 'free') {
+        console.log('Pause blocked by Timer Lock Mode');
+        return;
+      }
+
       clearAllIntervals();
       setTimerState(prev => ({
         ...prev,
@@ -468,13 +578,13 @@ export const [TimerProvider, useTimer] = createContextHook(() => {
         pauseTime: Date.now(),
       }));
     }
-  }, [timerState.isRunning, timerState.isPaused]);
+  }, [timerState.isRunning, timerState.isPaused, settings.timerLockEnabled, settings.premiumTier]);
 
   const resumeTimer = useCallback(() => {
     if (timerState.isRunning && timerState.isPaused && timerState.pauseTime) {
       const pausedDuration = Date.now() - timerState.pauseTime;
       const newStartTime = (timerState.startTime || Date.now()) + pausedDuration;
-      
+
       setTimerState(prev => ({
         ...prev,
         isPaused: false,

@@ -276,7 +276,7 @@ export class HapticManager {
   }
 
   // Custom haptic pattern for complex interactions
-  async triggerCustom(pattern: Array<{ type: HapticType; delay: number }>) {
+  async triggerCustom(pattern: { type: HapticType; delay: number }[]) {
     if (!this.canUseHaptics()) return;
 
     for (const { type, delay } of pattern) {

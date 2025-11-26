@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "web": {
+      "bundler": "metro"
+    },
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./app/assets/images/icon.png.svg",
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  }
+}

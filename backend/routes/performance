@@ -1,0 +1,544 @@
+/**
+ * Performance Monitoring Routes
+ * REST API endpoints for performance monitoring and optimization status
+ */
+
+const express = require('express');
+const router = express.Router();
+
+// Import performance monitoring components
+const {
+  performanceMonitoring,
+  getMetrics,
+  healthCheck
+} = require('../middleware/performance');
+
+const {
+  multiLevelCache,
+  apiResponseCache,
+  queryResultCache
+} = require('../utils/cache');
+
+const {
+  backgroundJobProcessor,
+  memoryOptimizer,
+  bundleOptimizer
+} = require('../utils/optimizer');
+
+const { getPerformanceConfig, getEnvironment } = require('../config/performance');
+const { logger } = require('../config/logger');
+
+/**
+ * GET /api/performance/health
+ * Comprehensive health check with performance metrics
+ */
+router.get('/health', async (req, res) => {
+  try {
+    const health = {
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      environment: getEnvironment(),
+      version: process.env.npm_package_version || '1.0.0',
+      uptime: Math.round(process.uptime()),
+      services: {},
+      performance: {}
+    };
+
+    // Check system resources
+    const memoryUsage = process.memoryUsage();
+    const cpuUsage = process.cpuUsage();
+    
+    health.services = {
+      server: {
+        status: 'healthy',
+        memory: {
+          used: Math.round(memoryUsage.heapUsed / 1024 / 1024),
+          total: Math.round(memoryUsage.heapTotal / 1024 / 1024),
+          percentage: Math.round((memoryUsage.heapUsed / memoryUsage.heapTotal) * 100)
+        },
+        cpu: {
+          user: cpuUsage.user,
+          system: cpuUsage.system
+        }
+      },
+      
+      cache: {
+        status: 'healthy',
+        memory: multiLevelCache.getStats(),
+        api: apiResponseCache.getCacheStats(),
+        query: queryResultCache.getQueryStats()
+      },
+      
+      backgroundJobs: {
+        status: 'healthy',
+        stats: backgroundJobProcessor.getStats()
+      },
+      
+      database: {
+        status: 'unknown',
+        message: 'Database health check not implemented'
+      }
+    };
+
+    // Performance metrics
+    health.performance = {
+      averageResponseTime: performanceMonitoring.metrics.averageResponseTime,
+      totalRequests: performanceMonitoring.metrics.requestCount,
+      errorRate: performanceMonitoring.metrics.requestCount > 0 ? 
+        ((performanceMonitoring.metrics.errorCount / performanceMonitoring.metrics.requestCount) * 100).toFixed(2) : '0',
+      memoryOptimization: memoryOptimizer.getMemoryStats()
+    };
+
+    // Determine overall health
+    const memoryPercent = (memoryUsage.heapUsed / memoryUsage.heapTotal) * 100;
+    const errorRate = parseFloat(health.performance.errorRate);
+    const avgResponseTime = health.performance.averageResponseTime;
+
+    if (memoryPercent > 90 || errorRate > 10 || avgResponseTime > 5000) {
+      health.status = 'unhealthy';
+    } else if (memoryPercent > 80 || errorRate > 5 || avgResponseTime > 2000) {
+      health.status = 'degraded';
+    }
+
+    const statusCode = health.status === 'healthy' ? 200 : 
+                      health.status === 'degraded' ? 200 : 503;
+
+    res.status(statusCode).json(health);
+
+  } catch (error) {
+    logger.error('Health check failed', { error: error.message, stack: error.stack });
+    res.status(503).json({
+      status: 'unhealthy',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+/**
+ * GET /api/performance/metrics
+ * Detailed performance metrics
+ */
+router.get('/metrics', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const metrics = {
+      timestamp: new Date().toISOString(),
+      server: {
+        uptime: process.uptime(),
+        memory: process.memoryUsage(),
+        cpu: process.cpuUsage(),
+        platform: process.platform,
+        nodeVersion: process.version
+      },
+      
+      performance: {
+        ...performanceMonitoring.metrics,
+        endpoints: Array.from(performanceMonitoring.metrics.endpoints.entries())
+      },
+      
+      cache: {
+        memory: multiLevelCache.getStats(),
+        api: apiResponseCache.getCacheStats(),
+        query: queryResultCache.getQueryStats()
+      },
+      
+      backgroundJobs: backgroundJobProcessor.getStats(),
+      
+      memoryOptimization: memoryOptimizer.getMemoryStats(),
+      
+      bundle: {
+        optimizations: bundleOptimizer.optimizeBundle(),
+        recommendations: bundleOptimizer.getBundleRecommendations()
+      },
+      
+      environment: {
+        type: getEnvironment(),
+        config: getPerformanceConfig()
+      }
+    };
+
+    res.json(metrics);
+
+  } catch (error) {
+    logger.error('Metrics collection failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to collect metrics',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/performance/cache
+ * Cache performance statistics
+ */
+router.get('/cache', async (req, res) => {
+  try {
+    const cacheStats = {
+      timestamp: new Date().toISOString(),
+      multiLevelCache: multiLevelCache.getStats(),
+      apiCache: apiResponseCache.getCacheStats(),
+      queryCache: queryResultCache.getQueryStats(),
+      configuration: getPerformanceConfig().caching
+    };
+
+    res.json(cacheStats);
+
+  } catch (error) {
+    logger.error('Cache stats retrieval failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to retrieve cache statistics',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/performance/cache/clear
+ * Clear all caches
+ */
+router.post('/cache/clear', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    await multiLevelCache.clear();
+    // Note: API cache and query cache clear methods would be called here
+    // if they have clear methods implemented
+
+    logger.info('Cache cleared via API', { 
+      userId: req.user?.id,
+      ip: req.ip 
+    });
+
+    res.json({
+      message: 'Cache cleared successfully',
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    logger.error('Cache clear failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to clear cache',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/performance/memory
+ * Memory usage and optimization stats
+ */
+router.get('/memory', async (req, res) => {
+  try {
+    const memoryStats = {
+      timestamp: new Date().toISOString(),
+      current: memoryOptimizer.getMemoryStats(),
+      process: process.memoryUsage(),
+      system: {
+        totalMemory: require('os').totalmem(),
+        freeMemory: require('os').freemem(),
+        loadAverage: require('os').loadavg()
+      }
+    };
+
+    res.json(memoryStats);
+
+  } catch (error) {
+    logger.error('Memory stats retrieval failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to retrieve memory statistics',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/performance/memory/gc
+ * Trigger garbage collection (development only)
+ */
+router.post('/memory/gc', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const memoryBefore = process.memoryUsage();
+    
+    // Trigger garbage collection
+    if (global.gc) {
+      global.gc();
+      const memoryAfter = process.memoryUsage();
+      
+      logger.info('Garbage collection triggered via API', {
+        userId: req.user?.id,
+        memoryBefore,
+        memoryAfter
+      });
+
+      res.json({
+        message: 'Garbage collection triggered successfully',
+        memoryBefore: {
+          heapUsed: Math.round(memoryBefore.heapUsed / 1024 / 1024),
+          heapTotal: Math.round(memoryBefore.heapTotal / 1024 / 1024)
+        },
+        memoryAfter: {
+          heapUsed: Math.round(memoryAfter.heapUsed / 1024 / 1024),
+          heapTotal: Math.round(memoryAfter.heapTotal / 1024 / 1024)
+        },
+        freed: Math.round((memoryBefore.heapUsed - memoryAfter.heapUsed) / 1024 / 1024)
+      });
+    } else {
+      res.status(400).json({
+        error: 'Garbage collection not available',
+        message: 'GC is only available in development mode with --expose-gc flag'
+      });
+    }
+
+  } catch (error) {
+    logger.error('GC trigger failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to trigger garbage collection',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/performance/jobs
+ * Background job processing status
+ */
+router.get('/jobs', async (req, res) => {
+  try {
+    const jobStats = backgroundJobProcessor.getStats();
+    
+    res.json({
+      timestamp: new Date().toISOString(),
+      stats: jobStats,
+      configuration: getPerformanceConfig().jobs
+    });
+
+  } catch (error) {
+    logger.error('Job stats retrieval failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to retrieve job statistics',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/performance/jobs/test
+ * Add a test job to the background queue
+ */
+router.post('/jobs/test', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const jobType = req.body.type || 'data_processing';
+    const jobData = req.body.data || { size: 100, test: true };
+    
+    const jobId = backgroundJobProcessor.addJob(jobType, jobData, {
+      priority: 'normal',
+      callback: (error, result) => {
+        logger.info('Test job completed', { jobId, error, result });
+      }
+    });
+
+    res.json({
+      message: 'Test job added successfully',
+      jobId,
+      jobType,
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    logger.error('Test job creation failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to create test job',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/performance/bundle
+ * Bundle optimization analysis
+ */
+router.get('/bundle', async (req, res) => {
+  try {
+    const bundleSize = parseInt(req.query.size) || 2048000; // 2MB default
+    const analysis = bundleOptimizer.analyzeBundleSize(bundleSize);
+    
+    res.json({
+      timestamp: new Date().toISOString(),
+      bundleSize,
+      analysis,
+      optimizations: bundleOptimizer.optimizeBundle(),
+      recommendations: bundleOptimizer.getBundleRecommendations(),
+      configuration: getPerformanceConfig().bundle
+    });
+
+  } catch (error) {
+    logger.error('Bundle analysis failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to analyze bundle',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/performance/config
+ * Performance configuration settings
+ */
+router.get('/config', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const config = getPerformanceConfig();
+    
+    res.json({
+      timestamp: new Date().toISOString(),
+      environment: getEnvironment(),
+      configuration: config,
+      targets: {
+        API_RESPONSE_TIME: '200ms (95th percentile)',
+        DB_QUERY_TIME: '100ms (average)',
+        MEMORY_USAGE: '512MB',
+        BUNDLE_SIZE: '5MB',
+        COLD_START_TIME: '3 seconds'
+      }
+    });
+
+  } catch (error) {
+    logger.error('Config retrieval failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to retrieve configuration',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * POST /api/performance/optimize
+ * Trigger optimization processes
+ */
+router.post('/optimize', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const optimizations = {
+      cacheCleanup: await multiLevelCache.cleanup(),
+      memoryOptimization: memoryOptimizer.getMemoryStats(),
+      bundleOptimization: bundleOptimizer.optimizeBundle()
+    };
+
+    logger.info('Optimization triggered via API', {
+      userId: req.user?.id,
+      optimizations
+    });
+
+    res.json({
+      message: 'Optimization processes completed',
+      optimizations,
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    logger.error('Optimization failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to run optimizations',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/performance/report
+ * Generate comprehensive performance report
+ */
+router.get('/report', async (req, res) => {
+  try {
+    const authorized = getEnvironment() === 'LOCAL' || req.user?.isAdmin;
+    
+    if (!authorized) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const report = {
+      timestamp: new Date().toISOString(),
+      environment: getEnvironment(),
+      summary: {
+        status: 'healthy',
+        score: 85, // This would be calculated from actual metrics
+        uptime: process.uptime(),
+        version: process.env.npm_package_version || '1.0.0'
+      },
+      metrics: {
+        server: {
+          uptime: process.uptime(),
+          memory: process.memoryUsage(),
+          cpu: process.cpuUsage()
+        },
+        performance: performanceMonitoring.metrics,
+        cache: {
+          memory: multiLevelCache.getStats(),
+          api: apiResponseCache.getCacheStats(),
+          query: queryResultCache.getQueryStats()
+        },
+        jobs: backgroundJobProcessor.getStats(),
+        memory: memoryOptimizer.getMemoryStats()
+      },
+      recommendations: [
+        'Consider implementing Redis for production caching',
+        'Monitor database query performance',
+        'Implement connection pooling for external services'
+      ]
+    };
+
+    // Set headers for download
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', `attachment; filename="performance-report-${Date.now()}.json"`);
+    
+    res.json(report);
+
+  } catch (error) {
+    logger.error('Report generation failed', { error: error.message });
+    res.status(500).json({
+      error: 'Failed to generate performance report',
+      message: error.message
+    });
+  }
+});
+
+// Mount the performance monitoring middleware
+router.use('/monitoring', (req, res) => {
+  // Use the performance monitoring middleware directly
+  return getMetrics(req, res);
+});
+
+module.exports = router;

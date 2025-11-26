@@ -1,29 +1,45 @@
 {
-  "extends": "expo-module-scripts/tsconfig.base",
   "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "paths": {
-      "@/*": ["./*"],
-      "@/app/*": ["./app/*"],
-      "@/components/*": ["./components/*"],
-      "@/assets/*": ["./app/assets/*"],
-      "@/constants/*": ["./app/constants/*"],
-      "@/contexts/*": ["./app/contexts/*"],
-      "@/utils/*": ["./app/utils/*"]
-    },
-    "lib": [
-      "ES2017",
-      "DOM"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+      "@/*": [
+        "./*"
+      ],
+      "@/app/*": [
+        "./app/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/assets/*": [
+        "./app/assets/*"
+      ],
+      "@/constants/*": [
+        "./app/constants/*"
+      ],
+      "@/contexts/*": [
+        "./app/contexts/*"
+      ],
+      "@/utils/*": [
+        "./app/utils/*"
+      ]
+    }
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
-  ]
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "extends": "expo/tsconfig.base"
 }

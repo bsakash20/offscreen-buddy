@@ -1,0 +1,8 @@
+# Services directory - contains business logic, not UI components
+# This directory should be excluded from Expo Router route scanning
+
+node_modules/
+dist/
+build/
+.expo/
+*.d.ts

@@ -1,6 +1,6 @@
 /**
- * Enhanced Notification System for ZenLock Timer
- * Premium roast messages with intelligent timing
+ * Enhanced Notification System for OffScreen Buddy Timer
+ * Pro roast messages with intelligent timing
  */
 
 export const FUNNY_MESSAGES = [

@@ -1,0 +1,602 @@
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-18 16:44:40'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-18 19:45:14'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763475511503_9yna6x4b6',
+  error: 'planId.includes is not a function',
+  stack: 'TypeError: planId.includes is not a function\n' +
+    '    at /Users/akash/OffScreen Buddy/offscreen-buddy/backend/routes/payu.js:355:35\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)',
+  body: { planId: 11, userId: 'test-user-1763475511202', currency: 'INR' },
+  level: 'error',
+  message: 'Create PayU transaction failed',
+  timestamp: '2025-11-18 19:48:31'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763475513663_sqk2nmnj6',
+  error: 'planId.includes is not a function',
+  stack: 'TypeError: planId.includes is not a function\n' +
+    '    at /Users/akash/OffScreen Buddy/offscreen-buddy/backend/routes/payu.js:355:35\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)',
+  body: { planId: 11, userId: 'test-user-1763475511202', currency: 'INR' },
+  level: 'error',
+  message: 'Create PayU transaction failed',
+  timestamp: '2025-11-18 19:48:33'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763475515867_d68r72r6t',
+  error: 'planId.includes is not a function',
+  stack: 'TypeError: planId.includes is not a function\n' +
+    '    at /Users/akash/OffScreen Buddy/offscreen-buddy/backend/routes/payu.js:355:35\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)',
+  body: { planId: 11, userId: 'test-user-1763475511202', currency: 'INR' },
+  level: 'error',
+  message: 'Create PayU transaction failed',
+  timestamp: '2025-11-18 19:48:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-18 21:16:27'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1763480861406_n02eas00d',
+  method: 'POST',
+  url: '/api/auth/register',
+  statusCode: 500,
+  duration: '3099.90ms',
+  category: 'critical',
+  responseSize: 77,
+  userAgent: 'axios/1.13.2',
+  isBot: false,
+  timestamp: '2025-11-18 21:17:44',
+  queryParams: 0,
+  headers: {
+    accept: 'application/json, text/plain, */*',
+    'content-type': 'application/json',
+    'user-agent': 'axios/1.13.2',
+    'content-length': '83',
+    'accept-encoding': 'gzip, compress, deflate, br',
+    host: 'localhost:3001',
+    connection: 'keep-alive'
+  },
+  level: 'error',
+  message: 'Critical request performance issue'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'process.loadavg is not a function',
+  stack: 'TypeError: process.loadavg is not a function\n' +
+    '    at PerformanceLogger.logSystemMetrics (/Users/akash/OffScreen Buddy/offscreen-buddy/backend/middleware/performanceLogger.js:224:59)\n' +
+    '    at PerformanceLogger.getPerformanceSummary (/Users/akash/OffScreen Buddy/offscreen-buddy/backend/middleware/performanceLogger.js:365:20)\n' +
+    '    at PerformanceLogger.triggerAlert (/Users/akash/OffScreen Buddy/offscreen-buddy/backend/middleware/performanceLogger.js:404:21)\n' +
+    '    at PerformanceLogger.checkAlertThreshold (/Users/akash/OffScreen Buddy/offscreen-buddy/backend/middleware/performanceLogger.js:391:12)\n' +
+    '    at PerformanceLogger.logRequestPerformance (/Users/akash/OffScreen Buddy/offscreen-buddy/backend/middleware/performanceLogger.js:280:12)\n' +
+    '    at ServerResponse.<anonymous> (/Users/akash/OffScreen Buddy/offscreen-buddy/backend/middleware/performanceLogger.js:87:12)\n' +
+    '    at ServerResponse.emit (node:events:520:35)\n' +
+    '    at onFinish (node:_http_outgoing:1026:10)\n' +
+    '    at callback (node:internal/streams/writable:764:21)\n' +
+    '    at afterWrite (node:internal/streams/writable:708:5)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-18 21:17:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1763481168195_mz3yavhb7',
+  method: 'POST',
+  url: '/api/auth/register',
+  statusCode: 500,
+  duration: '3623.99ms',
+  category: 'critical',
+  responseSize: 96,
+  userAgent: 'axios/1.13.2',
+  isBot: false,
+  timestamp: '2025-11-18 21:22:51',
+  queryParams: 0,
+  headers: {
+    accept: 'application/json, text/plain, */*',
+    'content-type': 'application/json',
+    'user-agent': 'axios/1.13.2',
+    'content-length': '91',
+    'accept-encoding': 'gzip, compress, deflate, br',
+    host: 'localhost:3001',
+    connection: 'keep-alive'
+  },
+  level: 'error',
+  message: 'Critical request performance issue'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-18 21:27:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-19 23:34:49'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-20 08:38:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728162174_txxl2xwwq',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728162381_abfbe1ac',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:22'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728163421_6sytskwpq',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728163591_1ff15cc5',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728164640_tzz1uaneo',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728164793_7b56ee2c',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:24'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728165840_0u8b7sen4',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728166000_a687db76',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:26'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728174853_dcizb12s7',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728175004_785a7c1b',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728176042_s9wk4jo7r',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728176183_37553477',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:36'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728177220_twj6vj0h2',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728177391_c7359735',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:37'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1763728178437_0h6vdppzu',
+  txnid: 'txn_2498c1b2-fce4-4be0-b5cd-1bc8220e697a_1763728178579_19cfaa6d',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-11-21 17:59:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-21 18:16:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 18:56:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 19:23:40'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:28:08'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:28:09'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:28:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:28:30'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:28:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:28:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:29:14'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 20:29:14'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 21:36:27'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 21:36:27'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 21:37:42'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-22 21:37:42'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  error: 'listen EADDRINUSE: address already in use 0.0.0.0:3001',
+  stack: 'Error: listen EADDRINUSE: address already in use 0.0.0.0:3001\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1940:16)\n' +
+    '    at listenInCluster (node:net:1997:12)\n' +
+    '    at node:net:2206:7\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)',
+  level: 'error',
+  message: 'Uncaught Exception',
+  timestamp: '2025-11-26 10:48:20'
+}

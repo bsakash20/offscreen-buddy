@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd app && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:backend:watch": "cd backend && nodemon server.js",
+    "dev:clean": "npm run clean && npm run dev",
+    "dev:logs": "tail -f logs/*.log",
+    "dev:reset": "./scripts/setup-development.sh --reset",
+    "dev:validate": "./scripts/setup-development.sh --validate-only",
+    "dev:test": "npm test && cd backend && npm test",
+    "dev:test:watch": "concurrently \"npm test -- --watch\" \"cd backend && npm test -- --watch\"",
+    "dev:lint": "npm run lint && cd backend && npm run lint",
+    "dev:format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "dev:docs": "cd backend && npm run docs",
+    "dev:db:setup": "cd backend && node setup-local-db.js",
+    "dev:db:reset": "cd backend && node setup-local-db.js --reset",
+    "dev:db:migrate": "cd backend && npm run migrate",
+    "dev:build": "npm run build && cd backend && npm run build",
+    "dev:build:watch": "concurrently \"npm run build -- --watch\" \"cd backend && npm run build -- --watch\""
+  }
+}

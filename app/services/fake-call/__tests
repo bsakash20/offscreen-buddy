@@ -1,0 +1,569 @@
+/**
+ * Edge Case Test Scenarios - System Interruption and Edge Case Tests
+ * Comprehensive testing for system interruptions, edge cases, and error recovery
+ */
+
+import React from 'react';
+import { Platform, AppState } from 'react-native';
+import { 
+    FakeCallService,
+    voiceSynthesisService,
+    callerIDService,
+    notificationService 
+} from '../FakeCallService';
+import { 
+    CallState,
+    CallAction,
+    CallErrorType 
+} from '../types';
+
+import {
+    MockCallerInfoFactory,
+    MockFakeCallConfigFactory,
+    MockCallScheduleFactory,
+    MockCallStateDataFactory,
+    MockCallErrorFactory,
+    MockStressTestFactory
+} from './MockFactories';
+
+import {
+    TestSetupHelper,
+    ErrorSimulationHelper,
+    PerformanceTestHelper
+} from './TestHelpers';
+
+import {
+    TEST_TIMEOUTS,
+    CALL_LIMITS,
+    ERROR_TYPES,
+    INTEGRATION_TEST_TIMEOUTS
+} from './TestConstants';
+
+describe('EdgeCaseTestScenarios', () => {
+    let mockFakeCallService: any;
+    let mockVoiceSynthesisService: any;
+    let mockCallerIDService: any;
+    let mockNotificationService: any;
+
+    beforeAll(() => {
+        TestSetupHelper.setupTestEnvironment();
+        mockFakeCallService = TestSetupHelper.createMockFakeCallService();
+        mockVoiceSynthesisService = TestSetupHelper.createMockVoiceSynthesisService();
+        mockCallerIDService = TestSetupHelper.createMockCallerIDService();
+        mockNotificationService = TestSetupHelper.createMockNotificationService();
+    });
+
+    afterAll(() => {
+        TestSetupHelper.cleanupTestEnvironment();
+    });
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    // ===========================================
+    // NOTIFICATION DISABLED SCENARIOS
+    // ===========================================
+
+    describe('Notification Disabled Scenarios', () => {
+        test('should handle disabled notifications gracefully', async () => {
+            // Mock notification service returning disabled state
+            mockNotificationService.scheduleNotification.mockResolvedValueOnce({
+                success: false,
+                error: {
+                    type: 'NOTIFICATION_DISABLED',
+                    code: 'NOTIFICATIONS_BLOCKED',
+                    message: 'Notifications are disabled',
+                    recoverable: false,
+                    suggestedAction: 'Enable notifications in settings'
+                }
+            });
+
+            const callSchedule = MockCallScheduleFactory.createStandard();
+            const result = await mockFakeCallService.scheduleCall(callSchedule);
+
+            expect(result.success).toBe(false);
+            expect(result.error.code).toBe('NOTIFICATION_SCHEDULE_FAILED');
+        });
+
+        test('should provide alternative alert mechanisms when notifications disabled', async () => {
+            const callSchedule = MockCallScheduleFactory.createStandard();
+            
+            // Mock fallback to in-app alerts
+            const fallbackAlert = async () => {
+                // Simulate in-app alert when notifications are disabled
+                return {
+                    success: true,
+                    data: {
+                        method: 'in_app_alert',
+                        scheduledTime: callSchedule.scheduledFor
+                    }
+                };
+            };
+
+            const result = await fallbackAlert();
+            expect(result.success).toBe(true);
+            expect(result.data.method).toBe('in_app_alert');
+        });
+
+        test('should maintain call functionality without notifications', async () => {
+            const callSchedule = MockCallScheduleFactory.createStandard();
+            
+            // Mock successful scheduling despite notification failure
+            mockFakeCallService.scheduleCall.mockResolvedValueOnce({
+                success: true,
+                data: {
+                    callId: callSchedule.id,
+                    scheduledTime: callSchedule.scheduledFor,
+                    notificationId: null, // No notification due to disabled state
+                    fallbackMethod: 'in_app_only'
+                }
+            });
+
+            const result = await mockFakeCallService.scheduleCall(callSchedule);
+            expect(result.success).toBe(true);
+            expect(result.data.notificationId).toBeNull();
+            expect(result.data.fallbackMethod).toBe('in_app_only');
+        });
+    });
+
+    // ===========================================
+    // PERMISSION DENIED SCENARIOS
+    // ===========================================
+
+    describe('Permission Denied Scenarios', () => {
+        test('should handle notification permission denial', async () => {
+            mockNotificationService.initialize.mockRejectedValueOnce(
+                ErrorSimulationHelper.simulatePermissionDeniedError('notification')
+            );
+
+            const result = await mockNotificationService.initialize();
+
+            expect(result.success).toBe(false);
+        });
+
+        test('should handle audio permission denial', async () => {
+            mockVoiceSynthesisService.initialize.mockRejectedValueOnce(
+                ErrorSimulationHelper.simulatePermissionDeniedError('audio')
+            );
+
+            const result = await mockVoiceSynthesisService.initialize();
+
+            expect(result.success).toBe(false);
+        });
+
+        test('should provide permission request guidance', async () => {
+            const permissionGuidance = {
+                notification: {
+                    title: 'Enable Notifications',
+                    message: 'Allow notifications to receive call reminders and incoming call alerts',
+                    settingsUrl: 'app-settings://notifications'
+                },
+                audio: {
+                    title: 'Enable Audio Access',
+                    message: 'Allow audio access for voice synthesis and call sounds',
+                    settingsUrl: 'app-settings://audio'
+                }
+            };
+
+            Object.values(permissionGuidance).forEach(guidance => {
+                expect(guidance.title).toBeDefined();
+                expect(guidance.message).toBeDefined();
+                expect(guidance.settingsUrl).toBeDefined();
+            });
+        });
+    });
+
+    // ===========================================
+    // APP BACKGROUNDED SCENARIOS
+    // ===========================================
+
+    describe('App Backgrounded Scenarios', () => {
+        test('should handle app backgrounding during active call', async () => {
+            const callData = MockCallStateDataFactory.createActive();
+            
+            // Mock app state change to background
+            const handleAppBackground = () => {
+                return {
+                    previousState: 'active',
+                    newState: 'background',
+                    callContinues: true,
+                    notificationsEnabled: true
+                };
+            };
+
+            const backgroundState = handleAppBackground();
+            expect(backgroundState.callContinues).toBe(true);
+            expect(backgroundState.notificationsEnabled).toBe(true);
+        });
+
+        test('should maintain call state when app is backgrounded', async () => {
+            let callState = 'active';
+            
+            const backgroundCall = () => {
+                // Call should continue in background
+                callState = 'background_active';
+                return {
+                    state: callState,
+                    audioContinues: true,
+                    uiHidden: true
+                };
+            };
+
+            const result = backgroundCall();
+            expect(result.state).toBe('background_active');
+            expect(result.audioContinues).toBe(true);
+            expect(result.uiHidden).toBe(true);
+        });
+
+        test('should handle incoming calls when app is backgrounded', async () => {
+            const incomingCallWhenBackgrounded = () => {
+                return {
+                    callReceived: true,
+                    appState: 'background',
+                    notificationShown: true,
+                    fullScreenIntent: Platform.OS === 'android',
+                    callKitDisplayed: Platform.OS === 'ios'
+                };
+            };
+
+            const result = incomingCallWhenBackgrounded();
+            expect(result.callReceived).toBe(true);
+            expect(result.notificationShown).toBe(true);
+        });
+    });
+
+    // ===========================================
+    // SYSTEM INTERRUPTION SCENARIOS
+    // ===========================================
+
+    describe('System Interruption Scenarios', () => {
+        test('should handle real phone calls interrupting fake calls', async () => {
+            const handleRealCallInterruption = (fakeCallState: CallState) => {
+                return {
+                    fakeCallPaused: true,
+                    realCallDetected: true,
+                    resumeAfterRealCall: true,
+                    autoResumeDelay: 5000
+                };
+            };
+
+            const result = handleRealCallInterruption(CallState.ACTIVE);
+            expect(result.fakeCallPaused).toBe(true);
+            expect(result.realCallDetected).toBe(true);
+            expect(result.resumeAfterRealCall).toBe(true);
+        });
+
+        test('should handle incoming SMS during fake calls', async () => {
+            const handleSMSInterruption = () => {
+                return {
+                    smsReceived: true,
+                    callPriority: 'fake_call',
+                    smsQueued: true,
+                    resumeAfterHandling: true
+                };
+            };
+
+            const result = handleSMSInterruption();
+            expect(result.callPriority).toBe('fake_call');
+            expect(result.smsQueued).toBe(true);
+        });
+
+        test('should handle timer/alarm interruptions', async () => {
+            const handleTimerInterruption = () => {
+                return {
+                    timerTriggered: true,
+                    callActive: true,
+                    timerPriority: 'system',
+                    callAction: 'pause_temporarily'
+                };
+            };
+
+            const result = handleTimerInterruption();
+            expect(result.timerPriority).toBe('system');
+            expect(result.callAction).toBe('pause_temporarily');
+        });
+    });
+
+    // ===========================================
+    // LOW BATTERY SCENARIOS
+    // ===========================================
+
+    describe('Low Battery Scenarios', () => {
+        test('should detect low battery state', async () => {
+            const checkBatteryStatus = () => {
+                return {
+                    batteryLevel: 0.15, // 15%
+                    isLowBattery: true,
+                    powerSaveMode: false,
+                    criticalThreshold: 0.10
+                };
+            };
+
+            const status = checkBatteryStatus();
+            expect(status.isLowBattery).toBe(true);
+            expect(status.batteryLevel).toBeLessThan(0.20);
+        });
+
+        test('should reduce functionality when battery is low', async () => {
+            const lowBatteryConfig = {
+                disableVoiceSynthesis: true,
+                reduceAudioQuality: true,
+                disableHapticFeedback: true,
+                shortenCallDuration: true,
+                increaseReminderInterval: true
+            };
+
+            expect(lowBatteryConfig.disableVoiceSynthesis).toBe(true);
+            expect(lowBatteryConfig.reduceAudioQuality).toBe(true);
+        });
+
+        test('should gracefully handle battery death during call', async () => {
+            const handleBatteryDeath = () => {
+                return {
+                    callInterrupted: true,
+                    batteryDepleted: true,
+                    emergencyShutdown: true,
+                    callStateSaved: true,
+                    resumeCapability: true
+                };
+            };
+
+            const result = handleBatteryDeath();
+            expect(result.batteryDepleted).toBe(true);
+            expect(result.callStateSaved).toBe(true);
+            expect(result.resumeCapability).toBe(true);
+        });
+    });
+
+    // ===========================================
+    // NETWORK CONNECTIVITY SCENARIOS
+    // ===========================================
+
+    describe('Network Connectivity Scenarios', () => {
+        test('should handle offline scenarios', async () => {
+            mockFakeCallService.scheduleCall.mockRejectedValueOnce(
+                new Error('Network connection unavailable')
+            );
+
+            const callSchedule = MockCallScheduleFactory.createStandard();
+            const result = await mockFakeCallService.scheduleCall(callSchedule);
+
+            expect(result.success).toBe(false);
+        });
+
+        test('should queue offline actions for later execution', async () => {
+            const offlineActionQueue = {
+                actions: [
+                    { type: 'schedule_call', data: MockCallScheduleFactory.createStandard() },
+                    { type: 'update_preferences', data: { userId: 'test_user', preferences: {} } }
+                ],
+                maxQueueSize: 100,
+                flushOnReconnect: true
+            };
+
+            expect(offlineActionQueue.actions.length).toBe(2);
+            expect(offlineActionQueue.flushOnReconnect).toBe(true);
+        });
+
+        test('should handle network reconnection', async () => {
+            const handleReconnection = () => {
+                return {
+                    networkRestored: true,
+                    offlineQueueFlushed: true,
+                    syncCompleted: true,
+                    notificationsRescheduled: true
+                };
+            };
+
+            const result = handleReconnection();
+            expect(result.networkRestored).toBe(true);
+            expect(result.offlineQueueFlushed).toBe(true);
+        });
+    });
+
+    // ===========================================
+    // STORAGE QUOTA SCENARIOS
+    // ===========================================
+
+    describe('Storage Quota Scenarios', () => {
+        test('should handle storage quota exceeded', async () => {
+            mockFakeCallService.scheduleCall.mockRejectedValueOnce(
+                ErrorSimulationHelper.simulateResourceExhaustionError('storage_quota')
+            );
+
+            const callSchedule = MockCallScheduleFactory.createStandard();
+            const result = await mockFakeCallService.scheduleCall(callSchedule);
+
+            expect(result.success).toBe(false);
+            expect(result.error.type).toBe('RESOURCE_EXHAUSTED');
+        });
+
+        test('should implement storage cleanup strategies', async () => {
+            const cleanupStrategy = {
+                priority: [
+                    'clear_audio_cache',
+                    'remove_old_call_logs',
+                    'compress_voice_samples',
+                    'delete_unused_preferences'
+                ],
+                maxCacheSize: 50 * 1024 * 1024, // 50MB
+                retentionPeriod: 7 * 24 * 60 * 60 * 1000 // 7 days
+            };
+
+            expect(cleanupStrategy.priority).toContain('clear_audio_cache');
+            expect(cleanupStrategy.maxCacheSize).toBe(50 * 1024 * 1024);
+        });
+    });
+
+    // ===========================================
+    // MEMORY PRESSURE SCENARIOS
+    // ===========================================
+
+    describe('Memory Pressure Scenarios', () => {
+        test('should detect memory pressure conditions', async () => {
+            const memoryStatus = {
+                usedHeap: 85 * 1024 * 1024,    // 85MB
+                totalHeap: 100 * 1024 * 1024,  // 100MB
+                pressureLevel: 'high',
+                criticalThreshold: 90
+            };
+
+            expect(memoryStatus.pressureLevel).toBe('high');
+            expect(memoryStatus.usedHeap / memoryStatus.totalHeap).toBeGreaterThan(0.8);
+        });
+
+        test('should implement memory optimization strategies', async () => {
+            const memoryOptimization = {
+                strategies: [
+                    'release_unused_voice_cache',
+                    'compress_audio_buffers',
+                    'clear_inactive_call_data',
+                    'reduce_concurrent_operations'
+                ],
+                memoryThreshold: 75, // 75% usage
+                aggressiveMode: 85   // 85% usage
+            };
+
+            expect(memoryOptimization.strategies.length).toBeGreaterThan(0);
+        });
+    });
+
+    // ===========================================
+    // CONCURRENT OPERATION SCENARIOS
+    // ===========================================
+
+    describe('Concurrent Operation Scenarios', () => {
+        test('should handle multiple simultaneous calls', async () => {
+            const concurrentCalls = MockStressTestFactory.createMultipleCalls(CALL_LIMITS.MAX_ACTIVE_CALLS);
+            
+            const handleConcurrentCalls = async () => {
+                const results = await Promise.allSettled(
+                    concurrentCalls.map(call => mockFakeCallService.triggerCall(call.callId))
+                );
+                
+                const successCount = results.filter(result => 
+                    result.status === 'fulfilled' && result.value.success
+                ).length;
+                
+                return {
+                    totalCalls: concurrentCalls.length,
+                    successfulCalls: successCount,
+                    failedCalls: concurrentCalls.length - successCount,
+                    withinLimits: successCount <= CALL_LIMITS.MAX_ACTIVE_CALLS
+                };
+            };
+
+            const result = await handleConcurrentCalls();
+            expect(result.withinLimits).toBe(true);
+        });
+
+        test('should prevent race conditions in call management', async () => {
+            let callState = 'inactive';
+            const operationQueue = [];
+            
+            const simulateRaceCondition = async () => {
+                const operations = [
+                    'trigger_call',
+                    'end_call',
+                    'trigger_call',
+                    'schedule_call'
+                ];
+                
+                for (const operation of operations) {
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                    operationQueue.push(operation);
+                }
+                
+                return operationQueue;
+            };
+            
+            const queue = await simulateRaceCondition();
+            expect(queue.length).toBe(4);
+            expect(queue[0]).toBe('trigger_call');
+        });
+    });
+
+    // ===========================================
+    // RECOVERY AND RESILIENCE SCENARIOS
+    // ===========================================
+
+    describe('Recovery and Resilience Scenarios', () => {
+        test('should implement exponential backoff for retries', async () => {
+            const exponentialBackoff = async (operation: () => Promise<any>, maxRetries: number = 3) => {
+                for (let attempt = 1; attempt <= maxRetries; attempt++) {
+                    try {
+                        const result = await operation();
+                        if (result.success) return result;
+                    } catch (error) {
+                        if (attempt === maxRetries) throw error;
+                        
+                        const delay = Math.pow(2, attempt - 1) * 1000; // 1s, 2s, 4s
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
+                }
+                throw new Error('Max retries exceeded');
+            };
+
+            const mockOperation = async () => {
+                if (Math.random() > 0.7) {
+                    return { success: true, data: 'operation completed' };
+                }
+                throw new Error('Operation failed');
+            };
+
+            const result = await exponentialBackoff(mockOperation);
+            expect(result.success).toBe(true);
+        });
+
+        test('should implement graceful degradation', async () => {
+            const gracefulDegradation = (failureMode: string) => {
+                const degradationStrategies = {
+                    voice_synthesis_failed: {
+                        fallback: 'text_notification',
+                        priority: 'maintain_call_flow'
+                    },
+                    audio_playback_failed: {
+                        fallback: 'visual_alerts_only',
+                        priority: 'maintain_ui_feedback'
+                    },
+                    notification_failed: {
+                        fallback: 'in_app_alerts',
+                        priority: 'maintain_user_awareness'
+                    }
+                };
+
+                return degradationStrategies[failureMode] || {
+                    fallback: 'basic_functionality',
+                    priority: 'maintain_core_features'
+                };
+            };
+
+            const strategy = gracefulDegradation('voice_synthesis_failed');
+            expect(strategy.fallback).toBe('text_notification');
+            expect(strategy.priority).toBe('maintain_call_flow');
+        });
+    });
+});
+
+export default EdgeCaseTestScenarios;

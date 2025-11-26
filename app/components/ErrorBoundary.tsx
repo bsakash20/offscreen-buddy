@@ -1,130 +1,71 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import React, { Component, ReactNode } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Colors from '@/assets/constants/colors';
 
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
-  onError?: (error: Error, errorInfo: ErrorInfo) => void;
+  onError?: (error: Error, errorInfo: any) => void;
 }
 
 interface State {
   hasError: boolean;
   error?: Error;
-  errorInfo?: ErrorInfo;
-  retryCount: number;
+  errorInfo?: any;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  private maxRetries = 3;
-
+export default class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      hasError: false,
-      error: undefined,
-      errorInfo: undefined,
-      retryCount: 0
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error): State {
+    return {
+      hasError: true,
+      error
     };
   }
 
-  static getDerivedStateFromError(error: Error): Partial<State> {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    const { onError } = this.props;
-    
-    // Log error for debugging
+  componentDidCatch(error: Error, errorInfo: any) {
+    // Log error to console and potentially to a service
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
-    // Call custom error handler if provided
-    if (onError) {
-      onError(error, errorInfo);
-    }
-    
-    // Update state with error info
+
     this.setState({
       error,
-      errorInfo,
+      errorInfo
     });
+
+    // Call custom error handler if provided
+    if (this.props.onError) {
+      this.props.onError(error, errorInfo);
+    }
   }
 
   handleRetry = () => {
-    const { retryCount } = this.state;
-    
-    if (retryCount < this.maxRetries) {
-      this.setState(prevState => ({
-        hasError: false,
-        error: undefined,
-        errorInfo: undefined,
-        retryCount: prevState.retryCount + 1,
-      }));
-    } else {
-      // If max retries exceeded, reload the app (native) or reload page (web)
-      if (Platform.OS === 'web') {
-        window.location.reload();
-      } else {
-        // For native apps, you might want to trigger a more graceful restart
-        console.warn('Max retries exceeded. Manual app restart required.');
-      }
-    }
+    this.setState({ hasError: false, error: undefined, errorInfo: undefined });
   };
 
   render() {
     if (this.state.hasError) {
-      const { fallback } = this.props;
-      const { error, retryCount } = this.state;
-      
-      // Use custom fallback if provided
-      if (fallback) {
-        return fallback;
+      // Custom fallback UI if provided
+      if (this.props.fallback) {
+        return this.props.fallback;
       }
 
+      // Default error UI
       return (
         <View style={styles.container}>
-          <View style={styles.content}>
-            <Text style={styles.emoji}>😵</Text>
-            <Text style={styles.title}>Oops! Something went wrong</Text>
-            <Text style={styles.message}>
-              We're sorry, but something unexpected happened. Don't worry, your data is safe.
+          <View style={styles.errorCard}>
+            <Text style={styles.errorIcon}>⚠️</Text>
+            <Text style={styles.errorTitle}>Something went wrong</Text>
+            <Text style={styles.errorMessage}>
+              An unexpected error occurred. Please try again or restart the app.
             </Text>
-            
-            {__DEV__ && error && (
-              <View style={styles.debugContainer}>
-                <Text style={styles.debugTitle}>Error Details (Debug Mode):</Text>
-                <Text style={styles.debugText}>
-                  {error.message}
-                </Text>
-                {error.stack && (
-                  <Text style={styles.debugStack} numberOfLines={5}>
-                    {error.stack}
-                  </Text>
-                )}
-              </View>
-            )}
-            
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.retryButton}
-                onPress={this.handleRetry}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.retryButtonText}>
-                  {retryCount < this.maxRetries ? `Try Again (${retryCount}/${this.maxRetries})` : 'Restart App'}
-                </Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity
-                style={styles.infoButton}
-                onPress={() => {
-                  // Could implement a feature to send error reports
-                  console.log('Report error feature could be implemented here');
-                }}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.infoButtonText}>Report Issue</Text>
-              </TouchableOpacity>
-            </View>
+
+            <TouchableOpacity style={styles.retryButton} onPress={this.handleRetry}>
+              <Text style={styles.retryButtonText}>Try Again</Text>
+            </TouchableOpacity>
           </View>
         </View>
       );
@@ -137,89 +78,49 @@ class ErrorBoundary extends Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.dark.background,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#FBF9F7',
   },
-  content: {
+  errorCard: {
+    backgroundColor: Colors.dark.surface,
+    padding: 24,
+    borderRadius: 12,
     alignItems: 'center',
-    maxWidth: 300,
+    maxWidth: 320,
+    borderWidth: 1,
+    borderColor: Colors.dark.border,
   },
-  emoji: {
+  errorIcon: {
     fontSize: 48,
     marginBottom: 16,
   },
-  title: {
-    fontSize: 20,
+  errorTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 12,
-    color: '#2D2D2D',
+    color: Colors.dark.text,
+    marginBottom: 8,
     textAlign: 'center',
   },
-  message: {
+  errorMessage: {
     fontSize: 14,
+    color: Colors.dark.textSecondary,
     textAlign: 'center',
-    color: '#6B6B6B',
     marginBottom: 24,
     lineHeight: 20,
   },
-  debugContainer: {
-    backgroundColor: '#f5f5f5',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
-  },
-  debugTitle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#666',
-    marginBottom: 8,
-  },
-  debugText: {
-    fontSize: 11,
-    color: '#666',
-    fontFamily: 'monospace',
-    marginBottom: 8,
-  },
-  debugStack: {
-    fontSize: 10,
-    color: '#888',
-    fontFamily: 'monospace',
-  },
-  buttonContainer: {
-    gap: 12,
-    alignItems: 'center',
-  },
   retryButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: Colors.dark.primary,
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 8,
     minWidth: 120,
+    alignItems: 'center',
   },
   retryButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
+    color: Colors.dark.buttonPrimary,
+    fontSize: 16,
     fontWeight: '600',
-    textAlign: 'center',
-  },
-  infoButton: {
-    backgroundColor: 'transparent',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#007AFF',
-  },
-  infoButtonText: {
-    color: '#007AFF',
-    fontSize: 12,
-    fontWeight: '500',
-    textAlign: 'center',
   },
 });
-
-export default ErrorBoundary;

@@ -100,7 +100,6 @@ const AnimatedPickerItem = ({
       >
         {value.toString().padStart(2, "0")}
       </Text>
-      {/* Glow effect removed to make selected timer more vibrant */}
     </Animated.View>
   );
 };

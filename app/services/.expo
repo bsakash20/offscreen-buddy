@@ -1,0 +1,3 @@
+# This file indicates that files in this directory should not be treated as Expo Router routes
+# Services directory - contains business logic and data management, not UI components
+export const EXCLUDED_FROM_ROUTING = true;

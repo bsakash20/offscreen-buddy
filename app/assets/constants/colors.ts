@@ -1,6 +1,6 @@
 /**
- * Enhanced ZenLock Timer Color System
- * Premium Apple-style design with glassmorphism effects - Dark Theme Only
+ * Enhanced OffScreen Buddy Timer Color System
+ * Pro Apple-style design with glassmorphism effects - Dark Theme Only
  */
 
 export interface ColorTheme {
@@ -73,18 +73,18 @@ const darkTheme: ColorTheme = {
   surfaceSecondary: 'rgba(45, 51, 59, 0.9)',
   surfaceTertiary: 'rgba(61, 66, 74, 0.85)',
   
-  // Text colors - premium dark mode with enhanced contrast
+  // Text colors - pro dark mode with enhanced contrast
   text: '#FFFFFF',
   textSecondary: '#E6EDF3',
   textTertiary: '#B8C5D0',
   textInverse: '#0D1117',
   
-  // Primary colors - enhanced iOS blue with better dark mode contrast
-  primary: '#4A8FFF',
-  primaryLight: '#6BA4FF',
-  primaryDark: '#3A7BDB',
+  // Primary colors - WCAG AA compliant contrast ratios
+  primary: '#3A7BDB',
+  primaryLight: '#5B9FFF',
+  primaryDark: '#2E6BBF',
   
-  // Accent colors - premium orange with enhanced warmth for dark mode
+  // Accent colors - pro orange with enhanced warmth for dark mode
   accent: '#FFB347',
   accentLight: '#FFC563',
   accentDark: '#E8A030',
@@ -94,7 +94,7 @@ const darkTheme: ColorTheme = {
   warning: '#FFD93D',
   error: '#FF6B6B',
   
-  // Interactive elements - premium feel with subtle animations
+  // Interactive elements - pro feel with subtle animations
   buttonPrimary: '#4A8FFF',
   buttonPrimaryHover: '#5B9FFF',
   buttonSecondary: 'rgba(45, 51, 59, 0.8)',
@@ -105,7 +105,7 @@ const darkTheme: ColorTheme = {
   borderLight: 'rgba(139, 148, 158, 0.15)',
   borderDark: 'rgba(139, 148, 158, 0.5)',
   
-  // Glassmorphism effects - premium dark glass with subtle glow
+  // Glassmorphism effects - pro dark glass with subtle glow
   glassBackground: 'rgba(255, 255, 255, 0.03)',
   glassBorder: 'rgba(255, 255, 255, 0.08)',
   glassShadow: 'rgba(0, 0, 0, 0.4)',
@@ -118,7 +118,7 @@ const darkTheme: ColorTheme = {
   overlay: 'rgba(13, 17, 23, 0.8)',
   overlayLight: 'rgba(13, 17, 23, 0.6)',
   
-  // Shadows - premium depth with subtle colored undertones
+  // Shadows - pro depth with subtle colored undertones
   shadow: 'rgba(0, 0, 0, 0.25)',
   shadowLight: 'rgba(0, 0, 0, 0.15)',
   shadowMedium: 'rgba(0, 0, 0, 0.35)',

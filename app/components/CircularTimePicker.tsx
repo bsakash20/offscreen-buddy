@@ -40,10 +40,6 @@ const getCenterIndex = (dataLength: number, initialValue: number) => {
   return firstSegmentStart + initialValue + centerRow;
 };
 
-const formatTime = (hours: number, minutes: number, seconds: number) => {
-  return `${hours}h ${minutes}m ${seconds}s`;
-};
-
 interface WheelProps {
   data: TimeData[];
   initialIndex: number;

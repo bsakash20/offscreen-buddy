@@ -9,14 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { BlurView } from "expo-blur";
-import { 
-  CheckCircle, 
-  Trophy, 
-  RotateCcw, 
-  X,
-  Sparkles,
-  Star,
-} from "lucide-react-native";
+import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 
 interface CompletionModalProps {
@@ -113,13 +106,13 @@ export default function CompletionModal({
   const textSlide = useRef(new Animated.Value(30)).current;
   const confettiRotation = useRef(new Animated.Value(0)).current;
 
-  const [particles, setParticles] = React.useState<Array<{
+  const [particles, setParticles] = React.useState<{
     id: number;
     x: number;
     y: number;
     delay: number;
     color: string;
-  }>>([]);
+  }[]>([]);
 
   const colors = ['#FF9500', '#FFB340', '#FF6B35', '#F7931E', '#FFA500'];
 
@@ -310,7 +303,7 @@ export default function CompletionModal({
                 elevation: 8,
               }
             ]}>
-              <CheckCircle size={60} color="#FFFFFF" />
+              <Ionicons name="checkmark-circle" size={60} color="#FFFFFF" />
             </View>
           </Animated.View>
 
@@ -340,7 +333,7 @@ export default function CompletionModal({
                   backgroundColor: theme.accent,
                 }
               ]}>
-                <Trophy size={18} color="#FFFFFF" />
+                <Ionicons name="trophy" size={18} color="#FFFFFF" />
               </View>
               <View style={styles.statTextContainer}>
                 <Text style={[styles.statLabel, { color: theme.textTertiary }]}>
@@ -371,15 +364,14 @@ export default function CompletionModal({
               onPress={handleRestart}
               activeOpacity={0.8}
             >
-              <RotateCcw size={20} color="#FFFFFF" />
+              <Ionicons name="refresh" size={20} color="#FFFFFF" />
               <Text style={styles.restartButtonText}>Restart Timer</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[
                 styles.button,
-                styles.closeButtonStyle,
-                { 
+                {
                   backgroundColor: theme.surfaceSecondary,
                   borderColor: theme.border,
                   shadowColor: theme.shadow,
@@ -392,7 +384,7 @@ export default function CompletionModal({
               onPress={handleClose}
               activeOpacity={0.8}
             >
-              <X size={20} color={theme.text} />
+              <Ionicons name="close" size={20} color={theme.text} />
               <Text style={[styles.closeButtonText, { color: theme.text }]}>
                 Done
               </Text>
@@ -407,7 +399,7 @@ export default function CompletionModal({
                 backgroundColor: theme.accent,
               }
             ]}>
-              <Sparkles size={14} color="#FFFFFF" />
+              <Ionicons name="sparkles" size={14} color="#FFFFFF" />
             </View>
             <Text style={[styles.motivationText, { color: theme.textSecondary }]}>
               Discipline unlocked! Your future self is proud 💯
@@ -436,7 +428,8 @@ export default function CompletionModal({
           ]}
         >
           {Array.from({ length: 8 }).map((_, i) => (
-            <Star
+            <Ionicons
+              name="star"
               key={i}
               size={16}
               color={colors[i % colors.length]}
@@ -554,9 +547,6 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: '600',
-  },
-  closeButtonStyle: {
-    // Additional styles for close button
   },
   closeButtonText: {
     fontSize: 16,

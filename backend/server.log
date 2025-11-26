@@ -1,0 +1,181 @@
+
+> offscreen-buddy-backend@1.0.0 start
+> node server.js
+
+✓ Backend environment detected from APP_ENV: LOCAL
+🔧 Validating LOCAL backend environment...
+⚠️  LOCAL environment security validation temporarily disabled for development
+✓ LOCAL backend environment validation passed
+📦 Loading backend configuration for LOCAL...
+✓ Backend configuration loaded successfully
+🔧 LOCAL: Supabase client initialized with development configuration
+   URL: https://cjjfegvtqvkcplvakpnk.supabase.co
+   Using service key for operations
+15:26:52 [[32minfo[39m]: Logger initialized
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0",
+  "logLevel": "debug",
+  "logDirectory": "/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs"
+}
+🔒 Loading enhanced security configuration for LOCAL environment...
+🔒 Loading enhanced security configuration for LOCAL environment...
+15:26:53 [[32minfo[39m]: Server configuration loaded
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "local",
+  "version": "1.0.0",
+  "port": "3001",
+  "features": {
+    "healthMonitoring": true,
+    "performanceLogging": true,
+    "errorHandling": true,
+    "structuredLogging": true
+  }
+}
+15:26:53 [[32minfo[39m]: Starting server initialization...
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0"
+}
+15:26:53 [[32minfo[39m]: Checking Supabase connectivity...
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0"
+}
+(node:50679) Warning: Accessing non-existent property 'ERROR_SEVERITY' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ Supabase connection successful
+15:26:53 [[32minfo[39m]: Supabase connection successful
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0"
+}
+15:26:53 [[32minfo[39m]: Checking database tables...
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0"
+}
+
+📊 Checking database tables...
+✓ Table 'users': ✓ Available
+✓ Table 'subscription_plans': ✓ Available
+✓ Table 'user_subscriptions': ✓ Available
+✓ Table 'user_settings': ✓ Available
+✓ Table 'user_analytics': ✓ Available
+✓ Table 'timer_sessions': ✓ Available
+✓ Table 'payment_events': ✓ Available
+15:26:54 [[32minfo[39m]: Creating default subscription plans...
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0"
+}
+
+🏗️ Setting up default subscription plans...
+✓ Subscription plans already exist
+15:26:54 [[32minfo[39m]: Running enhanced onboarding migration...
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0"
+}
+
+🔄 Checking enhanced onboarding migration...
+✓ Enhanced onboarding migration already applied
+15:26:54 [[32minfo[39m]: Server started successfully
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "local",
+  "version": "1.0.0",
+  "port": "3001",
+  "features": {
+    "healthMonitoring": true,
+    "performanceLogging": true,
+    "errorHandling": true,
+    "structuredLogging": true
+  },
+  "access": {
+    "local": "http://localhost:3001",
+    "network": "http://0.0.0.0:3001",
+    "mobile": "http://192.168.0.103:3001"
+  }
+}
+
+🚀 Server running on port 3001 (accessible on all interfaces)
+📱 Mobile apps can access the server at http://192.168.0.103:3001
+💰 Payment provider: PayU (Test Environment)
+🌐 Environment: local
+💾 Database: Supabase
+📊 Features: Health monitoring, performance logging, error handling
+🔑 PayU Keys: ✓ Configured
+
+✅ OffScreen Buddy Backend with comprehensive logging is ready!
+
+15:27:58 [[34mdebug[39m]: Request started
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0",
+  "requestId": "req_1763719078008_nkfusoiq9",
+  "method": "POST",
+  "url": "/api/auth/register-dev",
+  "userAgent": "curl/8.7.1",
+  "ip": "127.0.0.1",
+  "contentLength": "166"
+}
+🚀 LOCAL DEV: Using development registration endpoint
+User profile creation error: {
+  code: '23503',
+  details: 'Key (id)=(cb72c115-8008-4f8b-8c4f-4b4c609f18f6) is not present in table "users".',
+  hint: null,
+  message: 'insert or update on table "users" violates foreign key constraint "users_id_fkey"'
+}
+15:27:58 [[32minfo[39m]: Request performance
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0",
+  "operation": "http_request",
+  "requestId": "req_1763719078008_nkfusoiq9",
+  "method": "POST",
+  "url": "/api/auth/register-dev",
+  "statusCode": 500,
+  "duration": "188.02ms",
+  "category": "fast",
+  "responseSize": 96,
+  "userAgent": "curl/8.7.1",
+  "isBot": true,
+  "queryParams": 0,
+  "headers": {
+    "host": "localhost:3001",
+    "user-agent": "curl/8.7.1",
+    "accept": "*/*",
+    "content-type": "application/json",
+    "content-length": "166"
+  }
+}
+15:27:58 [[32minfo[39m]: Performance metric
+{
+  "service": "offscreen-buddy-backend",
+  "environment": "LOCAL",
+  "version": "1.0.0",
+  "operation": "POST /api/auth/register-dev",
+  "duration": "188.021042ms",
+  "memoryUsage": {
+    "rss": 77299712,
+    "heapTotal": 24494080,
+    "heapUsed": 23283768,
+    "external": 3808980,
+    "arrayBuffers": 158325
+  },
+  "statusCode": 500,
+  "responseSize": 96,
+  "userAgent": "curl/8.7.1",
+  "category": "fast"
+}

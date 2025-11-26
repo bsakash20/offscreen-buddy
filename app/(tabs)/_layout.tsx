@@ -1,13 +1,9 @@
 import { Tabs } from "expo-router";
-import { Timer, Settings } from "lucide-react-native";
-import React, { useState, useEffect } from "react";
-import { useColorScheme } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
 import Colors from "@/assets/constants/colors";
-import { useTimer } from "@/contexts/TimerContext";
 
 export default function TabLayout() {
-  const systemColorScheme = useColorScheme();
-  const { settings } = useTimer();
   const theme = Colors.dark;
 
   return (
@@ -49,10 +45,10 @@ export default function TabLayout() {
         options={{
           title: "Timer",
           tabBarIcon: ({ color, size, focused }) => (
-            <Timer
+            <Ionicons
+              name="timer"
               color={focused ? theme.primary : color}
               size={size}
-              strokeWidth={focused ? 2.5 : 2}
             />
           ),
         }}
@@ -62,10 +58,10 @@ export default function TabLayout() {
         options={{
           title: "Settings",
           tabBarIcon: ({ color, size, focused }) => (
-            <Settings
+            <Ionicons
+              name="settings"
               color={focused ? theme.primary : color}
               size={size}
-              strokeWidth={focused ? 2.5 : 2}
             />
           ),
         }}

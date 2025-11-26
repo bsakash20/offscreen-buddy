@@ -1,0 +1,21 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "files.associations": {
+    "*.env*": "dotenv"
+  },
+  "eslint.workingDirectories": ["app", "backend"],
+  "prettier.workingDirectories": ["app", "backend"],
+  "terminal.integrated.env.osx": {
+    "FIG_ENV": "/usr/local/bin/zsh"
+  },
+  "cSpell.words": [
+    "PayU",
+    "offscreen",
+    "Supabase"
+  ]
+}

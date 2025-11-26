@@ -1,0 +1,88 @@
+{
+  "traffic_routing_config": {
+    "version": "1.0.0",
+    "deployment_time": "2025-11-20T16:08:00Z",
+    "environments": {
+      "blue": {
+        "supabase_url": "https://cjjfegvtqvkcplvakpnk.supabase.co",
+        "api_url": "https://api-blue.offscreenbuddy.com",
+        "frontend_url": "https://blue.offscreenbuddy.com",
+        "status": "active",
+        "weight": 100,
+        "health_check": "/health"
+      },
+      "green": {
+        "supabase_url": "https://cjjfegvtqvkcplvakpnk.supabase.co",
+        "api_url": "https://api-green.offscreenbuddy.com",
+        "frontend_url": "https://green.offscreenbuddy.com",
+        "status": "standby",
+        "weight": 0,
+        "health_check": "/health"
+      }
+    },
+    "routing_rules": {
+      "health_check_interval": 30,
+      "failover_timeout": 60,
+      "traffic_split_percentage": {
+        "blue": 100,
+        "green": 0
+      },
+      "session_persistence": true,
+      "sticky_sessions": true
+    },
+    "load_balancer": {
+      "type": "nginx",
+      "upstream_config": {
+        "blue_backend": {
+          "servers": [
+            "api-blue-1.offscreenbuddy.com:443",
+            "api-blue-2.offscreenbuddy.com:443"
+          ],
+          "health_checks": true,
+          "fail_timeout": "10s",
+          "max_fails": 3
+        },
+        "green_backend": {
+          "servers": [
+            "api-green-1.offscreenbuddy.com:443",
+            "api-green-2.offscreenbuddy.com:443"
+          ],
+          "health_checks": true,
+          "fail_timeout": "10s",
+          "max_fails": 3
+        }
+      }
+    },
+    "health_monitoring": {
+      "endpoints": [
+        "/health",
+        "/api/health",
+        "/supabase/health"
+      ],
+      "response_time_threshold": 2000,
+      "error_rate_threshold": 5
+    },
+    "switchover_procedure": {
+      "pre_switchover_checks": [
+        "Validate green environment health",
+        "Verify data synchronization",
+        "Check session persistence setup",
+        "Confirm monitoring systems active"
+      ],
+      "switchover_steps": [
+        "Traffic weight shift: 90% Blue → 10% Green",
+        "Traffic weight shift: 70% Blue → 30% Green",
+        "Traffic weight shift: 50% Blue → 50% Green",
+        "Traffic weight shift: 30% Blue → 70% Green",
+        "Traffic weight shift: 10% Blue → 90% Green",
+        "Traffic weight shift: 0% Blue → 100% Green"
+      ],
+      "rollback_triggers": [
+        "Response time > 5000ms",
+        "Error rate > 10%",
+        "Health check failures",
+        "Database connection issues"
+      ]
+    }
+  }
+}

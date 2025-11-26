@@ -1,0 +1,8 @@
+# Configuration directory - contains app settings and configuration files, not routes
+# This directory should be excluded from Expo Router route scanning
+
+node_modules/
+dist/
+build/
+.expo/
+*.d.ts

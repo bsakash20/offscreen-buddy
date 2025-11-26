@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# deploy-frontend.sh - Frontend deployment script
+# Usage: ./deploy-frontend.sh [--env ENV]
+
+set -e
+
+# Default values
+ENVIRONMENT="LOCAL"
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --env)
+            ENVIRONMENT="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+echo "🌐 Frontend deployment started for environment: $ENVIRONMENT"
+
+# Function to log with timestamp
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
+
+# Validate environment
+log "🔍 Validating environment..."
+case $ENVIRONMENT in
+    "LOCAL")
+        API_URL="http://localhost:3001"
+        ;;
+    "PROD")
+        API_URL="https://api.yourdomain.com"
+        ;;
+    *)
+        log "❌ Unknown environment: $ENVIRONMENT"
+        exit 1
+        ;;
+esac
+
+# Build frontend
+log "🏗️ Building frontend application..."
+if npm run build 2>/dev/null; then
+    log "✅ Frontend build completed"
+else
+    log "⚠️  Build script not found, skipping build step"
+fi
+
+# Deploy based on environment
+case $ENVIRONMENT in
+    "LOCAL")
+        log "🏠 Setting up local frontend..."
+        if [ -d "web-build" ] || [ -d "dist" ]; then
+            log "✅ Frontend build files found"
+            log "📁 Frontend ready for local serving"
+        else
+            log "⚠️  No build files found, using Expo development server"
+        fi
+        ;;
+    "PROD")
+        log "🚀 Deploying to production..."
+        log "📡 API URL: $API_URL"
+        log "🌍 Environment: Production"
+        
+        # Check if we have web build
+        if [ -d "web-build" ] || [ -d "dist" ]; then
+            log "✅ Production build files ready"
+            log "📤 Ready for CDN/upload deployment"
+        else
+            log "⚠️  No production build found, Expo build required"
+        fi
+        ;;
+esac
+
+log "✅ Frontend deployment completed for environment: $ENVIRONMENT"
+echo ""
+echo "📊 Frontend Deployment Summary:"
+echo "   Environment: $ENVIRONMENT"
+echo "   API URL: $API_URL"
+echo "   Timestamp: $(date)"

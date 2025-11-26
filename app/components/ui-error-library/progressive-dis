@@ -1,0 +1,1486 @@
+/**
+ * PayU-Specific Progressive Disclosure System
+ * Specialized error handling and disclosure for PayU payment errors
+ */
+
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+import {
+    ProgressiveDisclosureProvider,
+    useProgressiveDisclosure
+} from '../services/ProgressiveDisclosureManager';
+import {
+    DisclosureLevel,
+    CrossPlatformAppError,
+    DisclosureContext,
+    ErrorContent
+} from '../types/ProgressiveDisclosureTypes';
+import ProgressiveErrorDisclosure from '../components/ProgressiveErrorDisclosure';
+import SmartExpansion from '../components/SmartExpansion';
+import { useBehaviorTracking } from '../services/BehaviorTrackingService';
+
+// PayU-specific error types
+export enum PayUErrorCategory {
+    TRANSACTION_DECLINED = 'transaction_declined',
+    INSUFFICIENT_FUNDS = 'insufficient_funds',
+    CARD_EXPIRED = 'card_expired',
+    INVALID_CVV = 'invalid_cvv',
+    NETWORK_ERROR = 'network_error',
+    DUPLICATE_TRANSACTION = 'duplicate_transaction',
+    GATEWAY_TIMEOUT = 'gateway_timeout',
+    SECURITY_VIOLATION = 'security_violation',
+    COMPLIANCE_ERROR = 'compliance_error',
+    SYSTEM_MAINTENANCE = 'system_maintenance'
+}
+
+// PayU-specific disclosure levels
+export enum PayUDisclosureLevel {
+    QUICK_RESOLUTION = 'quick_resolution',    // Immediate actions for users
+    PAYMENT_DETAILS = 'payment_details',      // Payment-specific context
+    GATEWAY_INFO = 'gateway_info',            // PayU gateway information
+    COMPLIANCE_INFO = 'compliance_info',      // Regulatory information
+    TECHNICAL_DEBUG = 'technical_debug'       // Full technical details
+}
+
+// PayU Error Context
+export interface PayUErrorContext extends DisclosureContext {
+    payuTransactionId?: string;
+    payuOrderId?: string;
+    paymentMethod: 'card' | 'wallet' | 'netbanking' | 'upi';
+    gatewayResponse?: PayUGatewayResponse;
+    complianceRequirements?: ComplianceRequirement[];
+    merchantConfig?: PayUMerchantConfig;
+}
+
+// PayU Gateway Response
+export interface PayUGatewayResponse {
+    status: 'success' | 'failure' | 'pending';
+    responseCode: string;
+    responseMessage: string;
+    transactionId?: string;
+    bankResponseCode?: string;
+    bankResponseMessage?: string;
+    mode: 'test' | 'live';
+    timestamp: Date;
+}
+
+// Compliance Requirements
+export interface ComplianceRequirement {
+    type: 'PCI' | 'GDPR' | 'PCI_DSS' | 'RBI' | 'PCI_PCI_DSS';
+    description: string;
+    userAction?: string;
+    documentation?: string;
+}
+
+// PayU Merchant Configuration
+export interface PayUMerchantConfig {
+    merchantId: string;
+    key: string;
+    salt: string;
+    environment: 'test' | 'live';
+    timeout: number;
+    retryAttempts: number;
+}
+
+// PayU-Specific Error Content
+export interface PayUErrorContent extends ErrorContent {
+    payuSpecific: {
+        quickActions: PayUQuickAction[];
+        paymentGuidance: PayUPaymentGuidance;
+        gatewayInformation: PayUGatewayInformation;
+        complianceDetails: PayUComplianceDetails;
+        contactSupport: PayUContactSupport;
+    };
+}
+
+// Quick Actions for immediate resolution
+export interface PayUQuickAction {
+    id: string;
+    title: string;
+    description: string;
+    action: () => void;
+    icon: string;
+    priority: 'high' | 'medium' | 'low';
+    estimatedTime: string;
+    requiresAuth: boolean;
+}
+
+// Payment-specific guidance
+export interface PayUPaymentGuidance {
+    cardIssues: CardIssueGuidance;
+    bankTransferIssues: BankTransferGuidance;
+    walletIssues: WalletGuidance;
+    upiIssues: UPIGuidance;
+}
+
+export interface CardIssueGuidance {
+    commonProblems: string[];
+    solutions: CardSolution[];
+    securityCheck: boolean;
+}
+
+export interface CardSolution {
+    problem: string;
+    solution: string;
+    steps: string[];
+}
+
+export interface BankTransferGuidance {
+    processingTime: string;
+    commonDelays: string[];
+    verificationRequired: boolean;
+}
+
+export interface WalletGuidance {
+    supportedWallets: string[];
+    commonIssues: string[];
+    topUpRequired: boolean;
+}
+
+export interface UPIGuidance {
+    supportedApps: string[];
+    commonIssues: string[];
+    verificationRequired: boolean;
+}
+
+// Gateway Information
+export interface PayUGatewayInformation {
+    gatewayStatus: 'operational' | 'degraded' | 'down';
+    maintenanceWindow?: MaintenanceWindow;
+    supportedBanks: string[];
+    transactionLimits: TransactionLimits;
+    supportedFeatures: string[];
+}
+
+export interface MaintenanceWindow {
+    scheduledStart: Date;
+    scheduledEnd: Date;
+    affectedServices: string[];
+    expectedImpact: string;
+}
+
+export interface TransactionLimits {
+    minAmount: number;
+    maxAmount: number;
+    dailyLimit?: number;
+    monthlyLimit?: number;
+}
+
+// Compliance Details
+export interface PayUComplianceDetails {
+    pciCompliance: PCICompliance;
+    gdprCompliance: GDPRCompliance;
+    regulatoryInfo: RegulatoryInfo[];
+}
+
+export interface PCICompliance {
+    level: '1' | '2' | '3' | '4';
+    description: string;
+    userDataProtection: boolean;
+}
+
+export interface GDPRCompliance {
+    dataProcessing: string[];
+    userRights: string[];
+    contactInfo: string;
+}
+
+// Support Information
+export interface PayUContactSupport {
+    phone: string;
+    email: string;
+    chatAvailable: boolean;
+    callbackAvailable: boolean;
+    supportHours: string;
+    escalationProcess: string[];
+}
+
+// PayU Progressive Disclosure Manager
+class PayUProgressiveDisclosureManager {
+    private contentGenerator = new PayUContentGenerator();
+
+    async generatePayUContent(
+        error: CrossPlatformAppError, 
+        level: PayUDisclosureLevel,
+        context: PayUErrorContext
+    ): Promise<PayUErrorContent> {
+        const baseContent = await this.generateBaseErrorContent(error, level, context);
+        const payuSpecific = await this.generatePayUSpecificContent(error, level, context);
+
+        return {
+            ...baseContent,
+            payuSpecific
+        };
+    }
+
+    private async generateBaseErrorContent(
+        error: CrossPlatformAppError,
+        level: PayUDisclosureLevel,
+        context: PayUErrorContext
+    ) {
+        // Generate base progressive disclosure content
+        return {
+            summary: {
+                title: this.getPayUErrorTitle(error, context),
+                description: this.getPayUErrorDescription(error, context),
+                impact: this.getPaymentImpact(error),
+                immediateAction: this.getImmediatePaymentAction(error),
+                estimatedTimeToResolve: this.getPaymentResolutionTime(error),
+                severityIndicator: this.getPaymentSeverity(error),
+                emotionTone: 'helpful' as const
+            },
+            details: this.getPaymentDetails(error, context),
+            technical: this.getPaymentTechnical(error, context),
+            debug: this.getPaymentDebug(error, context)
+        };
+    }
+
+    private async generatePayUSpecificContent(
+        error: CrossPlatformAppError,
+        level: PayUDisclosureLevel,
+        context: PayUErrorContext
+    ) {
+        return {
+            quickActions: this.generateQuickActions(error, context),
+            paymentGuidance: this.generatePaymentGuidance(error, context),
+            gatewayInformation: this.generateGatewayInformation(error, context),
+            complianceDetails: this.generateComplianceDetails(error, context),
+            contactSupport: this.generateContactSupport(error, context)
+        };
+    }
+
+    private getPayUErrorTitle(error: CrossPlatformAppError, context: PayUErrorContext): string {
+        if (error.paymentError) {
+            const category = error.paymentError.originalError?.error_code;
+            
+            switch (category) {
+                case 'E003':
+                    return 'Transaction Declined';
+                case 'E004':
+                    return 'Insufficient Funds';
+                case 'E005':
+                    return 'Card Expired';
+                case 'E006':
+                    return 'Invalid CVV';
+                case 'E007':
+                    return 'Network Error';
+                case 'E008':
+                    return 'Duplicate Transaction';
+                default:
+                    return 'Payment Error';
+            }
+        }
+
+        return 'Payment Processing Issue';
+    }
+
+    private getPayUErrorDescription(error: CrossPlatformAppError, context: PayUErrorContext): string {
+        if (error.paymentError) {
+            return error.paymentError.originalError?.error_message || 
+                   'There was an issue processing your payment. Let us help you resolve this.';
+        }
+
+        return 'We encountered a problem while processing your payment. Don\'t worry, we\'ll help you resolve this.';
+    }
+
+    private getPaymentImpact(error: CrossPlatformAppError): string {
+        if (error.userImpact === 'blocking') {
+            return 'Your payment could not be completed. You will need to resolve this before continuing.';
+        } else if (error.userImpact === 'disruptive') {
+            return 'Your payment is pending. You can try again or contact support for assistance.';
+        } else {
+            return 'This is a minor payment issue that won\'t affect your account.';
+        }
+    }
+
+    private getImmediatePaymentAction(error: CrossPlatformAppError): string | undefined {
+        if (error.retryable) {
+            return 'Try your payment again';
+        }
+        return 'Contact support for assistance';
+    }
+
+    private getPaymentResolutionTime(error: CrossPlatformAppError): string | undefined {
+        if (error.category === 'network') {
+            return 'Usually resolves within 1-2 minutes';
+        } else if (error.category === 'payment') {
+            return 'May take 5-15 minutes depending on your bank';
+        }
+        return undefined;
+    }
+
+    private getPaymentSeverity(error: CrossPlatformAppError) {
+        const severityMap = {
+            critical: { level: 'critical' as const, color: '#FF3B30', icon: '🚫', announcement: 'Critical payment error' },
+            high: { level: 'high' as const, color: '#FF9500', icon: '⚠️', announcement: 'High priority payment error' },
+            medium: { level: 'medium' as const, color: '#FFCC00', icon: '📋', announcement: 'Payment issue' },
+            low: { level: 'low' as const, color: '#34C759', icon: '✅', announcement: 'Minor payment notification' }
+        };
+
+        return severityMap[error.severity] || severityMap.medium;
+    }
+
+    private generateQuickActions(error: CrossPlatformAppError, context: PayUErrorContext): PayUQuickAction[] {
+        const actions: PayUQuickAction[] = [];
+
+        if (error.retryable) {
+            actions.push({
+                id: 'retry-payment',
+                title: 'Retry Payment',
+                description: 'Try processing your payment again',
+                action: () => console.log('Retry payment'),
+                icon: 'refresh',
+                priority: 'high',
+                estimatedTime: '30 seconds',
+                requiresAuth: false
+            });
+        }
+
+        switch (context.paymentMethod) {
+            case 'card':
+                actions.push({
+                    id: 'update-card',
+                    title: 'Update Card Details',
+                    description: 'Try a different card or update current card',
+                    action: () => console.log('Update card'),
+                    icon: 'card',
+                    priority: 'medium',
+                    estimatedTime: '2 minutes',
+                    requiresAuth: true
+                });
+                break;
+                
+            case 'netbanking':
+                actions.push({
+                    id: 'try-different-bank',
+                    title: 'Try Different Bank',
+                    description: 'Switch to another supported bank',
+                    action: () => console.log('Try different bank'),
+                    icon: 'business',
+                    priority: 'medium',
+                    estimatedTime: '1 minute',
+                    requiresAuth: false
+                });
+                break;
+                
+            case 'upi':
+                actions.push({
+                    id: 'verify-upi',
+                    title: 'Verify UPI ID',
+                    description: 'Check if your UPI ID is correct and verified',
+                    action: () => console.log('Verify UPI'),
+                    icon: 'finger-print',
+                    priority: 'high',
+                    estimatedTime: '1 minute',
+                    requiresAuth: false
+                });
+                break;
+                
+            case 'wallet':
+                actions.push({
+                    id: 'check-wallet-balance',
+                    title: 'Check Wallet Balance',
+                    description: 'Ensure sufficient balance in your wallet',
+                    action: () => console.log('Check wallet balance'),
+                    icon: 'wallet',
+                    priority: 'high',
+                    estimatedTime: '30 seconds',
+                    requiresAuth: false
+                });
+                break;
+        }
+
+        actions.push({
+            id: 'contact-support',
+            title: 'Contact Support',
+            description: 'Get help from our payment support team',
+            action: () => console.log('Contact support'),
+            icon: 'call',
+            priority: 'medium',
+            estimatedTime: '5-10 minutes',
+            requiresAuth: false
+        });
+
+        return actions;
+    }
+
+    private generatePaymentGuidance(error: CrossPlatformAppError, context: PayUErrorContext): PayUPaymentGuidance {
+        return {
+            cardIssues: {
+                commonProblems: [
+                    'Insufficient funds in account',
+                    'Card expired or about to expire',
+                    'Incorrect CVV number',
+                    'Card not enabled for online transactions',
+                    'Daily transaction limit exceeded'
+                ],
+                solutions: [
+                    {
+                        problem: 'Card declined by bank',
+                        solution: 'Check with your bank and try again',
+                        steps: [
+                            'Contact your bank to verify the card is active',
+                            'Ensure you have sufficient balance',
+                            'Check if online transactions are enabled',
+                            'Try the payment again'
+                        ]
+                    }
+                ],
+                securityCheck: true
+            },
+            bankTransferIssues: {
+                processingTime: 'Usually 1-3 business days',
+                commonDelays: [
+                    'Bank holidays',
+                    'Weekend processing delays',
+                    'Technical maintenance windows',
+                    'High transaction volumes'
+                ],
+                verificationRequired: true
+            },
+            walletIssues: {
+                supportedWallets: ['PhonePe', 'Paytm', 'Google Pay', 'Amazon Pay', 'Mobikwik'],
+                commonIssues: [
+                    'Insufficient wallet balance',
+                    'Wallet not linked to bank account',
+                    'KYC verification pending',
+                    'Daily transaction limit exceeded'
+                ],
+                topUpRequired: true
+            },
+            upiIssues: {
+                supportedApps: ['PhonePe', 'Google Pay', 'Paytm', 'Amazon Pay', 'Samsung Pay'],
+                commonIssues: [
+                    'Incorrect UPI ID',
+                    'UPI PIN validation failed',
+                    'Bank server down',
+                    'Daily transaction limit exceeded'
+                ],
+                verificationRequired: true
+            }
+        };
+    }
+
+    private generateGatewayInformation(error: CrossPlatformAppError, context: PayUErrorContext): PayUGatewayInformation {
+        return {
+            gatewayStatus: 'operational',
+            supportedBanks: [
+                'State Bank of India', 'HDFC Bank', 'ICICI Bank', 'Axis Bank',
+                'Kotak Mahindra Bank', 'Punjab National Bank', 'Bank of Baroda',
+                'Canara Bank', 'Union Bank of India', 'IDBI Bank'
+            ],
+            transactionLimits: {
+                minAmount: 1,
+                maxAmount: 100000,
+                dailyLimit: 50000,
+                monthlyLimit: 1000000
+            },
+            supportedFeatures: [
+                'EMI Support',
+                'Save Card',
+                'Net Banking',
+                'UPI',
+                'Wallet',
+                'Credit Card',
+                'Debit Card'
+            ]
+        };
+    }
+
+    private generateComplianceDetails(error: CrossPlatformAppError, context: PayUErrorContext): PayUComplianceDetails {
+        return {
+            pciCompliance: {
+                level: '1',
+                description: 'PayU is PCI DSS Level 1 certified, ensuring the highest level of security for your payment data.',
+                userDataProtection: true
+            },
+            gdprCompliance: {
+                dataProcessing: [
+                    'Your payment data is processed securely',
+                    'Data is encrypted in transit and at rest',
+                    'We follow strict data retention policies'
+                ],
+                userRights: [
+                    'Right to access your data',
+                    'Right to correction',
+                    'Right to deletion',
+                    'Right to data portability'
+                ],
+                contactInfo: 'privacy@payu.in'
+            },
+            regulatoryInfo: [
+                {
+                    type: 'RBI' as any,
+                    description: 'PayU complies with all Reserve Bank of India regulations for payment processing.',
+                    userAction: 'No action required from users',
+                    documentation: 'RBI Guidelines on Digital Payments'
+                }
+            ]
+        };
+    }
+
+    private generateContactSupport(error: CrossPlatformAppError, context: PayUErrorContext): PayUContactSupport {
+        return {
+            phone: '1800-180-4524',
+            email: 'support@payu.in',
+            chatAvailable: true,
+            callbackAvailable: true,
+            supportHours: '24/7 Customer Support',
+            escalationProcess: [
+                'Level 1: Self-help and FAQs',
+                'Level 2: Email Support',
+                'Level 3: Phone Support',
+                'Level 4: Technical Team'
+            ]
+        };
+    }
+
+    private getPaymentDetails(error: CrossPlatformAppError, context: PayUErrorContext) {
+        return {
+            whatHappened: this.getPaymentWhatHappened(error),
+            whyItHappened: this.getPaymentWhyItHappened(error),
+            whatYouCanDo: this.getPaymentActions(error, context),
+            preventionTips: this.getPaymentPreventionTips(context),
+            relatedFeatures: ['Transaction History', 'Payment Methods', 'Security Settings', 'Support'],
+            nextBestActions: this.getPaymentNextBestActions(error, context)
+        };
+    }
+
+    private getPaymentTechnical(error: CrossPlatformAppError, context: PayUErrorContext) {
+        return {
+            errorCode: error.code,
+            category: error.category,
+            platformDetails: {
+                platform: context.currentError.platformContext.platform,
+                osVersion: context.currentError.platformContext.deviceInfo.osVersion,
+                appVersion: context.currentError.platformContext.deviceInfo.appVersion,
+                deviceInfo: context.currentError.platformContext.deviceInfo.deviceModel,
+                networkStatus: context.currentError.platformContext.deviceInfo.networkType
+            },
+            systemRequirements: [
+                { name: 'PayU Gateway', current: 'Active', required: 'Active', status: 'met' as const },
+                { name: 'Encryption', current: '256-bit SSL', required: '128-bit SSL', status: 'met' as const }
+            ],
+            technicalContext: {
+                component: 'PayUGateway',
+                method: 'processTransaction',
+                lineNumber: 142,
+                fileName: 'PayUGateway.ts',
+                module: 'payment-processing'
+            },
+            logEntries: [
+                {
+                    timestamp: new Date(),
+                    level: 'error' as const,
+                    message: `PayU Transaction Failed: ${error.message}`,
+                    source: 'PayUGateway'
+                }
+            ]
+        };
+    }
+
+    private getPaymentDebug(error: CrossPlatformAppError, context: PayUErrorContext) {
+        return {
+            fullStackTrace: [],
+            variables: {
+                errorCode: { value: error.code, type: 'string', description: 'PayU error code' },
+                transactionId: { value: context.payuTransactionId || 'N/A', type: 'string', description: 'PayU transaction ID' },
+                orderId: { value: context.payuOrderId || 'N/A', type: 'string', description: 'PayU order ID' }
+            },
+            systemState: {
+                memory: { used: 0, available: 0, percentage: 0, breakdown: { app: 0, system: 0, cache: 0 } },
+                performance: { cpuUsage: 0, memoryPressure: 'normal' as const },
+                storage: { available: 0, used: 0, total: 0, categories: { app: 0, documents: 0, cache: 0, temporary: 0 } },
+                network: { type: 'wifi' as const, strength: 100 }
+            },
+            networkRequests: [],
+            performanceMetrics: [],
+            environmentDetails: {
+                buildType: 'debug',
+                environment: __DEV__ ? 'development' : 'production',
+                featureFlags: { payu_enabled: true, payment_debug: true },
+                configuration: { payu_merchant_id: 'XXXX', payu_environment: 'test' }
+            }
+        };
+    }
+
+    // Helper methods for detailed content
+    private getPaymentWhatHappened(error: CrossPlatformAppError): string {
+        return 'Your payment transaction was declined by the payment processor. This could be due to various reasons including insufficient funds, incorrect payment details, or bank policies.';
+    }
+
+    private getPaymentWhyItHappened(error: CrossPlatformAppError): string {
+        if (error.paymentError) {
+            const code = error.paymentError.originalError?.error_code;
+            switch (code) {
+                case 'E003':
+                    return 'The transaction was declined by your bank or payment provider. This could be due to insufficient funds, card restrictions, or security concerns.';
+                case 'E004':
+                    return 'Your payment method does not have sufficient funds to complete this transaction.';
+                case 'E005':
+                    return 'The card you are using has expired and cannot be used for new transactions.';
+                default:
+                    return 'The payment gateway encountered an issue while processing your transaction.';
+            }
+        }
+        return 'A technical issue occurred during payment processing that prevented the transaction from completing.';
+    }
+
+    private getPaymentActions(error: CrossPlatformAppError, context: PayUErrorContext) {
+        return [
+            {
+                id: 'verify-payment-method',
+                title: 'Verify Payment Method',
+                description: 'Check that your payment details are correct and up to date',
+                action: () => console.log('Verify payment method'),
+                estimatedTime: '2 minutes',
+                difficulty: 'easy' as const
+            },
+            {
+                id: 'try-alternative-method',
+                title: 'Try Alternative Payment Method',
+                description: 'Use a different payment method to complete your transaction',
+                action: () => console.log('Try alternative method'),
+                estimatedTime: '1 minute',
+                difficulty: 'easy' as const
+            }
+        ];
+    }
+
+    private getPaymentPreventionTips(context: PayUErrorContext): string[] {
+        return [
+            'Keep your payment methods updated with current information',
+            'Ensure sufficient balance before making large transactions',
+            'Enable transaction notifications to monitor your payments',
+            'Use secure networks when making payments'
+        ];
+    }
+
+    private getPaymentNextBestActions(error: CrossPlatformAppError, context: PayUErrorContext) {
+        return [
+            {
+                action: 'Retry with same payment method',
+                probability: 0.7,
+                impact: 'high',
+                effort: 'low',
+                description: 'If it was a temporary issue, retrying may resolve it'
+            },
+            {
+                action: 'Try different payment method',
+                probability: 0.9,
+                impact: 'high',
+                effort: 'low',
+                description: 'Switching to a different payment method often resolves the issue'
+            },
+            {
+                action: 'Contact your bank',
+                probability: 0.8,
+                impact: 'medium',
+                effort: 'medium',
+                description: 'Your bank can verify if there are any blocks on your account'
+            }
+        ];
+    }
+}
+
+// PayU Content Generator
+class PayUContentGenerator extends PayUProgressiveDisclosureManager {}
+
+// PayU-Specific Disclosure Component
+interface PayUProgressiveDisclosureProps {
+    error: CrossPlatformAppError;
+    context: PayUErrorContext;
+    onAction?: (action: string, data?: any) => void;
+}
+
+export const PayUProgressiveDisclosure: React.FC<PayUProgressiveDisclosureProps> = ({
+    error,
+    context,
+    onAction
+}) => {
+    const [currentLevel, setCurrentLevel] = useState<PayUDisclosureLevel>(PayUDisclosureLevel.QUICK_RESOLUTION);
+    const [content, setContent] = useState<PayUErrorContent | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const disclosureManager = useProgressiveDisclosure();
+    const behaviorTracking = useBehaviorTracking();
+
+    // Load PayU-specific content
+    useEffect(() => {
+        const loadContent = async () => {
+            setIsLoading(true);
+            try {
+                const manager = new PayUProgressiveDisclosureManager();
+                const payuContent = await manager.generatePayUContent(error, currentLevel, context);
+                setContent(payuContent);
+            } catch (error) {
+                console.error('Failed to generate PayU content:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadContent();
+    }, [error, currentLevel, context]);
+
+    // Handle level change
+    const handleLevelChange = (newLevel: PayUDisclosureLevel) => {
+        setCurrentLevel(newLevel);
+        
+        // Record interaction
+        behaviorTracking.recordInteraction({
+            timestamp: new Date(),
+            level: newLevel as any,
+            action: 'view_detail',
+            duration: 0,
+            outcome: 'helpful'
+        });
+    };
+
+    // Handle quick actions
+    const handleQuickAction = (actionId: string) => {
+        const action = content?.payuSpecific.quickActions.find(a => a.id === actionId);
+        if (action) {
+            action.action();
+            
+            // Record action
+            behaviorTracking.recordInteraction({
+                timestamp: new Date(),
+                level: currentLevel as any,
+                action: 'view_detail',
+                duration: 1000,
+                outcome: 'helpful'
+            });
+            
+            onAction?.('quick_action', { actionId, action });
+        }
+    };
+
+    if (isLoading || !content) {
+        return <Text>Loading payment error details...</Text>;
+    }
+
+    return (
+        <View style={styles.container}>
+            {/* PayU-specific header */}
+            <View style={styles.header}>
+                <View style={styles.payULogo}>
+                    <Text style={styles.payULogoText}>PayU</Text>
+                </View>
+                <Text style={styles.headerTitle}>Payment Error</Text>
+            </View>
+
+            {/* Level selector */}
+            <View style={styles.levelSelector}>
+                {Object.values(PayUDisclosureLevel).map((level) => (
+                    <TouchableOpacity
+                        key={level}
+                        style={[
+                            styles.levelButton,
+                            currentLevel === level && styles.levelButtonActive
+                        ]}
+                        onPress={() => handleLevelChange(level)}
+                    >
+                        <Text style={[
+                            styles.levelButtonText,
+                            currentLevel === level && styles.levelButtonTextActive
+                        ]}>
+                            {level.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+
+            {/* Content based on level */}
+            <ScrollView style={styles.content}>
+                {currentLevel === PayUDisclosureLevel.QUICK_RESOLUTION && (
+                    <QuickResolutionLevel 
+                        content={content.payuSpecific}
+                        onAction={handleQuickAction}
+                    />
+                )}
+                
+                {currentLevel === PayUDisclosureLevel.PAYMENT_DETAILS && (
+                    <PaymentDetailsLevel 
+                        content={content.payuSpecific.paymentGuidance}
+                        error={error}
+                        context={context}
+                    />
+                )}
+                
+                {currentLevel === PayUDisclosureLevel.GATEWAY_INFO && (
+                    <GatewayInfoLevel 
+                        content={content.payuSpecific.gatewayInformation}
+                    />
+                )}
+                
+                {currentLevel === PayUDisclosureLevel.COMPLIANCE_INFO && (
+                    <ComplianceInfoLevel 
+                        content={content.payuSpecific.complianceDetails}
+                    />
+                )}
+                
+                {currentLevel === PayUDisclosureLevel.TECHNICAL_DEBUG && (
+                    <TechnicalDebugLevel 
+                        content={content}
+                        error={error}
+                        context={context}
+                    />
+                )}
+            </ScrollView>
+
+            {/* Contact Support */}
+            <ContactSupportSection 
+                content={content.payuSpecific.contactSupport}
+                onAction={(action) => onAction?.('support', { action })}
+            />
+        </View>
+    );
+};
+
+// Level-specific components
+const QuickResolutionLevel: React.FC<{
+    content: any;
+    onAction: (actionId: string) => void;
+}> = ({ content, onAction }) => (
+    <View style={styles.levelContent}>
+        <Text style={styles.levelTitle}>Quick Solutions</Text>
+        <Text style={styles.levelDescription}>
+            Try these immediate actions to resolve your payment issue
+        </Text>
+        
+        {content.quickActions.map((action: PayUQuickAction) => (
+            <TouchableOpacity
+                key={action.id}
+                style={[
+                    styles.quickActionCard,
+                    action.priority === 'high' && styles.highPriority,
+                    action.priority === 'medium' && styles.mediumPriority
+                ]}
+                onPress={() => onAction(action.id)}
+            >
+                <View style={styles.quickActionHeader}>
+                    <Ionicons name={action.icon as any} size={24} color="#007AFF" />
+                    <Text style={styles.quickActionTitle}>{action.title}</Text>
+                    {action.priority === 'high' && (
+                        <View style={styles.priorityBadge}>
+                            <Text style={styles.priorityBadgeText}>HIGH</Text>
+                        </View>
+                    )}
+                </View>
+                <Text style={styles.quickActionDescription}>{action.description}</Text>
+                <Text style={styles.quickActionTime}>⏱ {action.estimatedTime}</Text>
+            </TouchableOpacity>
+        ))}
+    </View>
+);
+
+const PaymentDetailsLevel: React.FC<{
+    content: PayUPaymentGuidance;
+    error: CrossPlatformAppError;
+    context: PayUErrorContext;
+}> = ({ content, error, context }) => (
+    <View style={styles.levelContent}>
+        <Text style={styles.levelTitle}>Payment Details</Text>
+        
+        {context.paymentMethod === 'card' && (
+            <CardPaymentDetails content={content.cardIssues} />
+        )}
+        
+        {context.paymentMethod === 'netbanking' && (
+            <BankTransferDetails content={content.bankTransferIssues} />
+        )}
+        
+        {context.paymentMethod === 'wallet' && (
+            <WalletDetails content={content.walletIssues} />
+        )}
+        
+        {context.paymentMethod === 'upi' && (
+            <UPIDetails content={content.upiIssues} />
+        )}
+    </View>
+);
+
+const CardPaymentDetails: React.FC<{ content: CardIssueGuidance }> = ({ content }) => (
+    <View style={styles.paymentMethodContent}>
+        <Text style={styles.methodTitle}>Card Payment Issues</Text>
+        
+        <Text style={styles.sectionSubtitle}>Common Problems:</Text>
+        {content.commonProblems.map((problem, index) => (
+            <Text key={index} style={styles.problemItem}>• {problem}</Text>
+        ))}
+        
+        <Text style={styles.sectionSubtitle}>Solutions:</Text>
+        {content.solutions.map((solution, index) => (
+            <View key={index} style={styles.solutionCard}>
+                <Text style={styles.solutionProblem}>{solution.problem}</Text>
+                <Text style={styles.solutionText}>{solution.solution}</Text>
+                {solution.steps.map((step, stepIndex) => (
+                    <Text key={stepIndex} style={styles.stepText}>
+                        {stepIndex + 1}. {step}
+                    </Text>
+                ))}
+            </View>
+        ))}
+    </View>
+);
+
+const BankTransferDetails: React.FC<{ content: BankTransferGuidance }> = ({ content }) => (
+    <View style={styles.paymentMethodContent}>
+        <Text style={styles.methodTitle}>Bank Transfer Issues</Text>
+        
+        <View style={styles.infoCard}>
+            <Text style={styles.infoLabel}>Processing Time:</Text>
+            <Text style={styles.infoValue}>{content.processingTime}</Text>
+        </View>
+        
+        <Text style={styles.sectionSubtitle}>Common Delays:</Text>
+        {content.commonDelays.map((delay, index) => (
+            <Text key={index} style={styles.delayItem}>• {delay}</Text>
+        ))}
+    </View>
+);
+
+const WalletDetails: React.FC<{ content: WalletGuidance }> = ({ content }) => (
+    <View style={styles.paymentMethodContent}>
+        <Text style={styles.methodTitle}>Wallet Issues</Text>
+        
+        <Text style={styles.sectionSubtitle}>Supported Wallets:</Text>
+        <Text style={styles.walletsText}>{content.supportedWallets.join(', ')}</Text>
+        
+        <Text style={styles.sectionSubtitle}>Common Issues:</Text>
+        {content.commonIssues.map((issue, index) => (
+            <Text key={index} style={styles.issueItem}>• {issue}</Text>
+        ))}
+    </View>
+);
+
+const UPIDetails: React.FC<{ content: UPIGuidance }> = ({ content }) => (
+    <View style={styles.paymentMethodContent}>
+        <Text style={styles.methodTitle}>UPI Issues</Text>
+        
+        <Text style={styles.sectionSubtitle}>Supported Apps:</Text>
+        <Text style={styles.appsText}>{content.supportedApps.join(', ')}</Text>
+        
+        <Text style={styles.sectionSubtitle}>Common Issues:</Text>
+        {content.commonIssues.map((issue, index) => (
+            <Text key={index} style={styles.issueItem}>• {issue}</Text>
+        ))}
+    </View>
+);
+
+const GatewayInfoLevel: React.FC<{ content: PayUGatewayInformation }> = ({ content }) => (
+    <View style={styles.levelContent}>
+        <Text style={styles.levelTitle}>Gateway Information</Text>
+        
+        <View style={[
+            styles.statusCard,
+            content.gatewayStatus === 'operational' && styles.statusOperational,
+            content.gatewayStatus === 'degraded' && styles.statusDegraded,
+            content.gatewayStatus === 'down' && styles.statusDown
+        ]}>
+            <Text style={styles.statusText}>
+                Gateway Status: {content.gatewayStatus.toUpperCase()}
+            </Text>
+        </View>
+        
+        <Text style={styles.sectionSubtitle}>Supported Banks:</Text>
+        <Text style={styles.banksList}>{content.supportedBanks.join(', ')}</Text>
+        
+        <Text style={styles.sectionSubtitle}>Transaction Limits:</Text>
+        <View style={styles.limitsCard}>
+            <Text>Min: ₹{content.transactionLimits.minAmount}</Text>
+            <Text>Max: ₹{content.transactionLimits.maxAmount}</Text>
+            {content.transactionLimits.dailyLimit && (
+                <Text>Daily Limit: ₹{content.transactionLimits.dailyLimit}</Text>
+            )}
+        </View>
+    </View>
+);
+
+const ComplianceInfoLevel: React.FC<{ content: PayUComplianceDetails }> = ({ content }) => (
+    <View style={styles.levelContent}>
+        <Text style={styles.levelTitle}>Compliance & Security</Text>
+        
+        <View style={styles.complianceCard}>
+            <Text style={styles.complianceTitle}>PCI DSS Compliance</Text>
+            <Text style={styles.complianceLevel}>Level {content.pciCompliance.level}</Text>
+          <Text style={styles.complianceDescription}>{content.pciCompliance.description}</Text>
+        </View>
+        
+        <View style={styles.complianceCard}>
+            <Text style={styles.complianceTitle}>GDPR Compliance</Text>
+            <Text style={styles.complianceDescription}>
+                Your data is processed in compliance with GDPR regulations.
+            </Text>
+        </View>
+    </View>
+);
+
+const TechnicalDebugLevel: React.FC<{
+    content: PayUErrorContent;
+    error: CrossPlatformAppError;
+    context: PayUErrorContext;
+}> = ({ content, error, context }) => (
+    <View style={styles.levelContent}>
+        <Text style={styles.levelTitle}>Technical Information</Text>
+        
+        <View style={styles.debugSection}>
+            <Text style={styles.debugLabel}>Error Code:</Text>
+            <Text style={styles.debugValue}>{error.code}</Text>
+        </View>
+        
+        <View style={styles.debugSection}>
+            <Text style={styles.debugLabel}>Transaction ID:</Text>
+            <Text style={styles.debugValue}>{context.payuTransactionId || 'N/A'}</Text>
+        </View>
+        
+        <View style={styles.debugSection}>
+            <Text style={styles.debugLabel}>Order ID:</Text>
+            <Text style={styles.debugValue}>{context.payuOrderId || 'N/A'}</Text>
+        </View>
+        
+        <View style={styles.debugSection}>
+            <Text style={styles.debugLabel}>Gateway Response:</Text>
+            <Text style={styles.debugValue}>
+                {context.gatewayResponse?.responseCode || 'N/A'} - {context.gatewayResponse?.responseMessage || 'N/A'}
+            </Text>
+        </View>
+    </View>
+);
+
+const ContactSupportSection: React.FC<{
+    content: PayUContactSupport;
+    onAction: (action: string) => void;
+}> = ({ content, onAction }) => (
+    <View style={styles.supportSection}>
+        <Text style={styles.supportTitle}>Need More Help?</Text>
+        
+        <View style={styles.supportOptions}>
+            <TouchableOpacity style={styles.supportOption} onPress={() => onAction('phone')}>
+                <Ionicons name="call" size={20} color="#007AFF" />
+                <Text style={styles.supportOptionText}>{content.phone}</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.supportOption} onPress={() => onAction('email')}>
+                <Ionicons name="mail" size={20} color="#007AFF" />
+                <Text style={styles.supportOptionText}>{content.email}</Text>
+            </TouchableOpacity>
+            
+            {content.chatAvailable && (
+                <TouchableOpacity style={styles.supportOption} onPress={() => onAction('chat')}>
+                    <Ionicons name="chatbubble" size={20} color="#007AFF" />
+                    <Text style={styles.supportOptionText}>Live Chat</Text>
+                </TouchableOpacity>
+            )}
+        </View>
+        
+        <Text style={styles.supportHours}>Support Hours: {content.supportHours}</Text>
+    </View>
+);
+
+// PayU Provider Component
+interface PayUProgressiveDisclosureProviderProps {
+    children: React.ReactNode;
+    merchantConfig: PayUMerchantConfig;
+}
+
+export const PayUProgressiveDisclosureProvider: React.FC<PayUProgressiveDisclosureProviderProps> = ({
+    children,
+    merchantConfig
+}) => {
+    return (
+        <ProgressiveDisclosureProvider
+            initialPreferences={{
+                defaultLevel: DisclosureLevel.SUMMARY,
+                autoExpand: true,
+                progressiveDisclose: true
+            }}
+        >
+            {children}
+        </ProgressiveDisclosureProvider>
+    );
+};
+
+// Hook for PayU-specific error handling
+export const usePayUProgressiveDisclosure = () => {
+    const disclosure = useProgressiveDisclosure();
+    const behaviorTracking = useBehaviorTracking();
+
+    const showPayUError = async (
+        error: CrossPlatformAppError,
+        context: PayUErrorContext
+    ) => {
+        const id = await disclosure.showProgressiveError(error, {
+            ...context,
+            userExpertise: UserExpertiseLevel.INTERMEDIATE
+        });
+
+        // Track PayU-specific interaction
+        behaviorTracking.recordInteraction({
+            timestamp: new Date(),
+            level: DisclosureLevel.SUMMARY,
+            action: 'view_detail',
+            duration: 1000,
+            outcome: 'helpful'
+        });
+
+        return id;
+    };
+
+    return {
+        ...disclosure,
+        showPayUError,
+        behaviorTracking
+    };
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#FFFFFF'
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        backgroundColor: '#F8F9FA',
+        borderBottomWidth: 1,
+        borderBottomColor: '#E5E5E5'
+    },
+    payULogo: {
+        backgroundColor: '#FF6B35',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 4,
+        marginRight: 12
+    },
+    payULogoText: {
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+        fontSize: 14
+    },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#1C1C1E'
+    },
+    levelSelector: {
+        flexDirection: 'row',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        backgroundColor: '#FFFFFF',
+        borderBottomWidth: 1,
+        borderBottomColor: '#E5E5E5'
+    },
+    levelButton: {
+        flex: 1,
+        paddingVertical: 8,
+        paddingHorizontal: 4,
+        borderRadius: 6,
+        marginHorizontal: 2
+    },
+    levelButtonActive: {
+        backgroundColor: '#E3F2FD'
+    },
+    levelButtonText: {
+        fontSize: 12,
+        fontWeight: '500',
+        color: '#666666',
+        textAlign: 'center'
+    },
+    levelButtonTextActive: {
+        color: '#007AFF',
+        fontWeight: '600'
+    },
+    content: {
+        flex: 1,
+        padding: 16
+    },
+    levelContent: {
+        marginBottom: 24
+    },
+    levelTitle: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: '#1C1C1E',
+        marginBottom: 8
+    },
+    levelDescription: {
+        fontSize: 16,
+        color: '#3C3C43',
+        marginBottom: 16
+    },
+    
+    // Quick Action styles
+    quickActionCard: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 8,
+        padding: 16,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: '#E5E5E5',
+        elevation: 1,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2
+    },
+    highPriority: {
+        borderLeftWidth: 4,
+        borderLeftColor: '#FF3B30'
+    },
+    mediumPriority: {
+        borderLeftWidth: 4,
+        borderLeftColor: '#FF9500'
+    },
+    quickActionHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 8
+    },
+    quickActionTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1C1C1E',
+        marginLeft: 8,
+        flex: 1
+    },
+    priorityBadge: {
+        backgroundColor: '#FF3B30',
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+        borderRadius: 4
+    },
+    priorityBadgeText: {
+        color: '#FFFFFF',
+        fontSize: 10,
+        fontWeight: 'bold'
+    },
+    quickActionDescription: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 4
+    },
+    quickActionTime: {
+        fontSize: 12,
+        color: '#666666'
+    },
+    
+    // Payment method content
+    paymentMethodContent: {
+        marginBottom: 20
+    },
+    methodTitle: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#1C1C1E',
+        marginBottom: 12
+    },
+    sectionSubtitle: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#1C1C1E',
+        marginTop: 12,
+        marginBottom: 8
+    },
+    problemItem: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 4
+    },
+    solutionCard: {
+        backgroundColor: '#F8F9FA',
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 12
+    },
+    solutionProblem: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#1C1C1E',
+        marginBottom: 6
+    },
+    solutionText: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 8
+    },
+    stepText: {
+        fontSize: 13,
+        color: '#3C3C43',
+        marginBottom: 2,
+        marginLeft: 12
+    },
+    infoCard: {
+        backgroundColor: '#F0F9FF',
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 12
+    },
+    infoLabel: {
+        fontSize: 14,
+        fontWeight: '500',
+        color: '#0369A1',
+        marginBottom: 4
+    },
+    infoValue: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1C1C1E'
+    },
+    delayItem: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 4
+    },
+    walletsText: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 12,
+        fontWeight: '500'
+    },
+    appsText: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 12,
+        fontWeight: '500'
+    },
+    issueItem: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 4
+    },
+    
+    // Gateway info styles
+    statusCard: {
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 16
+    },
+    statusOperational: {
+        backgroundColor: '#D4EDDA',
+        borderColor: '#C3E6CB',
+        borderWidth: 1
+    },
+    statusDegraded: {
+        backgroundColor: '#FFF3CD',
+        borderColor: '#FFEAA7',
+        borderWidth: 1
+    },
+    statusDown: {
+        backgroundColor: '#F8D7DA',
+        borderColor: '#F5C6CB',
+        borderWidth: 1
+    },
+    statusText: {
+        fontSize: 14,
+        fontWeight: '600',
+        textAlign: 'center'
+    },
+    banksList: {
+        fontSize: 14,
+        color: '#3C3C43',
+        marginBottom: 16,
+        lineHeight: 20
+    },
+    limitsCard: {
+        backgroundColor: '#F8F9FA',
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 16
+    },
+    
+    // Compliance styles
+    complianceCard: {
+        backgroundColor: '#F0F9FF',
+        borderRadius: 8,
+        padding: 16,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: '#E0F2FE'
+    },
+    complianceTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#0369A1',
+        marginBottom: 4
+    },
+    complianceLevel: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#1C1C1E',
+        marginBottom: 8
+    },
+    complianceDescription: {
+        fontSize: 14,
+        color: '#0369A1',
+        lineHeight: 20
+    },
+    
+    // Debug styles
+    debugSection: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: '#E5E5E5',
+        marginBottom: 8
+    },
+    debugLabel: {
+        fontSize: 14,
+        fontWeight: '500',
+        color: '#3C3C43',
+        flex: 1
+    },
+    debugValue: {
+        fontSize: 14,
+        color: '#1C1C1E',
+        fontFamily: 'monospace',
+        flex: 2,
+        textAlign: 'right'
+    },
+    
+    // Support styles
+    supportSection: {
+        backgroundColor: '#F8F9FA',
+        paddingHorizontal: 16,
+        paddingVertical: 16,
+        borderTopWidth: 1,
+        borderTopColor: '#E5E5E5'
+    },
+    supportTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#1C1C1E',
+        marginBottom: 12
+    },
+    supportOptions: {
+        marginBottom: 8
+    },
+    supportOption: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 6,
+        marginBottom: 8
+    },
+    supportOptionText: {
+        fontSize: 14,
+        color: '#007AFF',
+        marginLeft: 8,
+        flex: 1
+    },
+    supportHours: {
+        fontSize: 12,
+        color: '#666666',
+        textAlign: 'center'
+    }
+});
+
+export default PayUProgressiveDisclosure;
