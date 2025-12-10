@@ -77585,3 +77585,6043 @@
   level: 'info',
   message: 'Performance metric'
 }
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-27 17:40:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-27 17:40:23'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-27 17:40:23'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-27 17:40:23'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-27 17:40:25'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-27 17:40:25'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-27 17:40:26'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-27 17:40:26'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-27 17:40:26'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-11-27 17:42:28'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-11-27 17:42:28',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1217.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-11-27 17:42:30',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  userId: 'tst@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-11-27 17:42:30'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-11-27 17:42:30',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  txnid: 'txn_tst@email.com_1764245550503_0f719283',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  txnid: 'txn_tst@email.com_1764245550503_0f719283',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-11-27 17:42:30'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1553.44ms',
+  category: 'slow',
+  timestamp: '2025-11-27 17:42:30',
+  timerId: 'timer_1764245548955_clp2zt',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_tst@email.com_1764245550503_0f719283',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  method: 'POST',
+  url: '/api/payment/payu/create-transaction',
+  statusCode: 200,
+  duration: '1585.92ms',
+  category: 'slow',
+  responseSize: 689,
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  isBot: false,
+  timestamp: '2025-11-27 17:42:30',
+  queryParams: 0,
+  headers: {
+    host: 'localhost:3001',
+    'content-type': 'application/json',
+    connection: 'keep-alive',
+    accept: '*/*',
+    'user-agent': 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+    'content-length': '66',
+    'accept-language': 'en-IN,en;q=0.9',
+    'accept-encoding': 'gzip, deflate'
+  },
+  level: 'warn',
+  message: 'Slow request detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'POST /api/payment/payu/create-transaction',
+  duration: '1585.915834ms',
+  timestamp: '2025-11-27 17:42:30',
+  memoryUsage: {
+    rss: 47333376,
+    heapTotal: 24231936,
+    heapUsed: 20070592,
+    external: 3712748,
+    arrayBuffers: 125625
+  },
+  statusCode: 200,
+  responseSize: 689,
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  category: 'slow',
+  level: 'info',
+  message: 'Performance metric'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1764245599388_2pgmbfn19',
+  method: 'POST',
+  url: '/api/payu/verify-payment',
+  statusCode: 404,
+  duration: '679.46ms',
+  category: 'acceptable',
+  responseSize: 50,
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  isBot: false,
+  timestamp: '2025-11-27 17:43:20',
+  queryParams: 0,
+  headers: {
+    host: 'localhost:3001',
+    'content-type': 'application/json',
+    connection: 'keep-alive',
+    accept: '*/*',
+    'user-agent': 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+    'content-length': '52',
+    'accept-language': 'en-IN,en;q=0.9',
+    'accept-encoding': 'gzip, deflate'
+  },
+  level: 'info',
+  message: 'Request performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'POST /api/payu/verify-payment',
+  duration: '679.456166ms',
+  timestamp: '2025-11-27 17:43:20',
+  memoryUsage: {
+    rss: 36995072,
+    heapTotal: 24231936,
+    heapUsed: 20690688,
+    external: 3738482,
+    arrayBuffers: 154751
+  },
+  statusCode: 404,
+  responseSize: 50,
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  category: 'acceptable',
+  level: 'info',
+  message: 'Performance metric'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:29:00'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:29:00'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:29:00'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:29:00'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:29:03'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:29:03'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:29:05'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:29:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:29:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1764399578298_48ir79p03',
+  method: 'POST',
+  url: '/api/auth/register-dev',
+  statusCode: 403,
+  duration: '5.15ms',
+  category: 'fast',
+  responseSize: 31,
+  userAgent: 'curl/8.7.1',
+  isBot: true,
+  timestamp: '2025-11-29 12:29:38',
+  queryParams: 0,
+  headers: {
+    host: 'localhost:3001',
+    'user-agent': 'curl/8.7.1',
+    accept: '*/*',
+    'content-type': 'application/json',
+    'content-length': '81'
+  },
+  level: 'info',
+  message: 'Request performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'POST /api/auth/register-dev',
+  duration: '5.150334ms',
+  timestamp: '2025-11-29 12:29:38',
+  memoryUsage: {
+    rss: 66404352,
+    heapTotal: 31834112,
+    heapUsed: 23037960,
+    external: 3785434,
+    arrayBuffers: 205139
+  },
+  statusCode: 403,
+  responseSize: 31,
+  userAgent: 'curl/8.7.1',
+  category: 'fast',
+  level: 'info',
+  message: 'Performance metric'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1764399587711_ji43pwxfw',
+  method: 'POST',
+  url: '/api/auth/register',
+  statusCode: 403,
+  duration: '1.90ms',
+  category: 'fast',
+  responseSize: 31,
+  userAgent: 'curl/8.7.1',
+  isBot: true,
+  timestamp: '2025-11-29 12:29:47',
+  queryParams: 0,
+  headers: {
+    host: 'localhost:3001',
+    'user-agent': 'curl/8.7.1',
+    accept: '*/*',
+    'content-type': 'application/json',
+    'content-length': '81'
+  },
+  level: 'info',
+  message: 'Request performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'POST /api/auth/register',
+  duration: '1.899375ms',
+  timestamp: '2025-11-29 12:29:47',
+  memoryUsage: {
+    rss: 60407808,
+    heapTotal: 32096256,
+    heapUsed: 23459688,
+    external: 3785562,
+    arrayBuffers: 205227
+  },
+  statusCode: 403,
+  responseSize: 31,
+  userAgent: 'curl/8.7.1',
+  category: 'fast',
+  level: 'info',
+  message: 'Performance metric'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:50:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:50:04'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:04'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:04'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:06'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:06'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:08'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:08'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:50:09'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:50:39'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:50:39'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:39'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:39'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:40'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:40'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:42'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:50:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:50:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:51:42'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:51:42'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:51:42'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:51:42'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:51:42'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:51:42'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:51:44'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:51:45'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:51:45'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:52:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:52:56'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:52:56'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:52:56'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:52:56'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:52:56'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:52:59'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:52:59'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:52:59'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:53:25'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:53:25'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:53:25'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:53:25'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:53:25'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:53:25'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:53:28'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:53:28'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    performanceLogging: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:53:28'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-11-29 12:54:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-11-29 12:54:20'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:54:20'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:54:20'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:54:21'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:54:21'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:54:23'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-11-29 12:54:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-11-29 12:54:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-07 18:47:52'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-07 18:47:53'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:47:53'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:47:53'
+}
+{
+  message: 'Failed to connect to Supabase',
+  level: 'error',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:47:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-07 18:50:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-07 18:50:04'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:50:04'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:50:04'
+}
+{
+  message: 'Failed to connect to Supabase',
+  level: 'error',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:50:07'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 09:14:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-08 09:14:20'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:14:20'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:14:20'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:14:22'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:14:22'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:14:23'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:14:24'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-08 09:14:24'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 09:14:34'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 09:14:34',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 09:14:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 09:14:35',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765165475834_7d0e804b',
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765165475834_7d0e804b',
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 09:14:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1047.57ms',
+  category: 'slow',
+  timestamp: '2025-12-08 09:14:35',
+  timerId: 'timer_1765165474790_jsk9n3',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765165475834_7d0e804b',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 09:28:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 10:48:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-08 10:48:36'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 10:48:36'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 10:48:36'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 10:48:37'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 10:48:37'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 10:48:39'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 10:48:39'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-08 10:48:39'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 11:17:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 11:17:04',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1083.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 11:17:06',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 11:17:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 11:17:06',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765172826306_33a1e290',
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765172826306_33a1e290',
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 11:17:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1353.38ms',
+  category: 'slow',
+  timestamp: '2025-12-08 11:17:06',
+  timerId: 'timer_1765172824958_01lwxf',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765172826306_33a1e290',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.von',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 11:33:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 11:33:43',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.von',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1131.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 11:33:44',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.von',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 11:33:44'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 11:33:44',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_test@email.von_1765173824367_337b4f16',
+  userId: 'test@email.von',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_test@email.von_1765173824367_337b4f16',
+  userId: 'test@email.von',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 11:33:44'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1359.37ms',
+  category: 'slow',
+  timestamp: '2025-12-08 11:33:44',
+  timerId: 'timer_1765173823009_3d4cmj',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.von_1765173824367_337b4f16',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_yearly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 15:44:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 15:44:55',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_yearly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1732.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 15:44:57',
+  table: 'subscription_plans',
+  planId: 'pro_yearly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 15:44:57'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 15:44:57',
+  orderId: undefined,
+  amount: 4999,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765188897948_84d99583',
+  userId: 'test@email.com',
+  planId: 'pro_yearly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765188897948_84d99583',
+  userId: 'test@email.com',
+  planId: 'pro_yearly',
+  amount: 4999,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 15:44:57'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '2132.97ms',
+  category: 'slow',
+  timestamp: '2025-12-08 15:44:57',
+  timerId: 'timer_1765188895822_rwschn',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765188897948_84d99583',
+  amount: 4999,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.comm',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 16:03:03'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 16:03:03',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.comm',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.comm',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 16:03:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 16:03:04',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_test@email.comm_1765189984447_c53a55ff',
+  userId: 'test@email.comm',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_test@email.comm_1765189984447_c53a55ff',
+  userId: 'test@email.comm',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 16:03:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '900.95ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 16:03:04',
+  timerId: 'timer_1765189983556_j5ew7e',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.comm_1765189984447_c53a55ff',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 17:22:14'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 17:22:14',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1222.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 17:22:15',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'tst@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 17:22:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 17:22:15',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_tst@email.com_1765194735719_9e978a6e',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_tst@email.com_1765194735719_9e978a6e',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 17:22:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1491.50ms',
+  category: 'slow',
+  timestamp: '2025-12-08 17:22:15',
+  timerId: 'timer_1765194734231_0ca0en',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_tst@email.com_1765194735719_9e978a6e',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 18:37:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 18:37:53',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 18:37:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 18:37:55',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765199275054_cd030ab6',
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_test@email.com_1765199275054_cd030ab6',
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 18:37:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1280.33ms',
+  category: 'slow',
+  timestamp: '2025-12-08 18:37:55',
+  timerId: 'timer_1765199273778_2389gv',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765199275054_cd030ab6',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:03:57'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 19:29:01'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-08 19:29:01'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:29:01'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:29:01'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:29:03'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:29:03'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:29:04'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 19:29:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-08 19:29:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:00:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:00:54'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '844.44ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:00:54',
+  timerId: 'timer_1765207853199_gz2892',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:00:54'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:00:54'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '223.16ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:00:54',
+  timerId: 'timer_1765207854104_6h4zg0',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:01:03'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:01:03'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '413.70ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:01:03',
+  timerId: 'timer_1765207863509_oifyab',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 21:01:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 21:01:05',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  hasEmail: true,
+  hasName: false,
+  hasPhone: false,
+  level: 'info',
+  message: 'User details found in database',
+  timestamp: '2025-12-08 21:01:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765207866229_4f2d88d4',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-12-08 21:01:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '479.35ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:01:06',
+  timerId: 'timer_1765207865751_3106ga',
+  success: false,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  error: 'Missing mandatory parameters',
+  missingParams: 'phone',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:03:11'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:03:13'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1106.24ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:03:13',
+  timerId: 'timer_1765207991992_ruskb5',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:06:10'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:06:10'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '798.57ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:06:10',
+  timerId: 'timer_1765208170052_fblwng',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 21:06:31'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 21:06:31',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  hasEmail: true,
+  hasName: false,
+  hasPhone: false,
+  level: 'info',
+  message: 'User details found in database',
+  timestamp: '2025-12-08 21:06:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765208192846_ac4e4695',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-12-08 21:06:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1027.65ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:06:32',
+  timerId: 'timer_1765208191819_n8xns7',
+  success: false,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  error: 'Missing mandatory parameters',
+  missingParams: 'phone',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:12:02'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:12:03'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '853.32ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:12:03',
+  timerId: 'timer_1765208522546_gl66g7',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:12:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:12:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '260.29ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:12:05',
+  timerId: 'timer_1765208525448_2aaznp',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:12:07'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:12:07'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '294.11ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:12:07',
+  timerId: 'timer_1765208527042_m1xvpy',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:12:07'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:12:07'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '268.69ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:12:07',
+  timerId: 'timer_1765208527697_dgxble',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:13:54'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:13:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '879.74ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:13:55',
+  timerId: 'timer_1765208634837_h6demx',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:13:57'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:13:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '306.75ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:13:58',
+  timerId: 'timer_1765208637963_i1r4ai',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:13:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:13:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '307.69ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:13:58',
+  timerId: 'timer_1765208638410_wruwg4',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:14:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:14:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:14:59'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '640.67ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:14:59',
+  timerId: 'timer_1765208698444_bglcqq',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:14:59'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '453.40ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:14:59',
+  timerId: 'timer_1765208698755_1tjb4y',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:15:24'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:15:25'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '685.49ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:15:25',
+  timerId: 'timer_1765208724429_z7yycz',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:15:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:15:59'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '661.62ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:15:59',
+  timerId: 'timer_1765208758480_t8khex',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:16:02'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:16:02'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '300.61ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:16:02',
+  timerId: 'timer_1765208762161_d7cjpm',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:16:03'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:16:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '307.42ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:16:04',
+  timerId: 'timer_1765208763803_052uc7',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:17:22'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:17:22'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:17:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '770.93ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:17:23',
+  timerId: 'timer_1765208842330_iea792',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:17:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '804.70ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:17:23',
+  timerId: 'timer_1765208842716_g17s4e',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:21:01'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:21:02'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1186.26ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:21:02',
+  timerId: 'timer_1765209061189_4274aa',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:28:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:28:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '938.31ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:28:16',
+  timerId: 'timer_1765209495550_6nwmj1',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:28:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:28:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '642.12ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:28:54',
+  timerId: 'timer_1765209533356_oe2ctf',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:29:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:29:21'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '494.38ms',
+  category: 'fast',
+  timestamp: '2025-12-08 21:29:21',
+  timerId: 'timer_1765209560747_qfjfqk',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:29:47'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:29:47'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:29:47'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '689.69ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:29:47',
+  timerId: 'timer_1765209587164_y8y7f0',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:29:47'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '579.34ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:29:47',
+  timerId: 'timer_1765209587297_dy5vnr',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:38:33'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:38:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1516.37ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:38:35',
+  timerId: 'timer_1765210113929_uhz678',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:49:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:49:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1006.03ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:49:38',
+  timerId: 'timer_1765210777979_3fohwy',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:50:31'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:50:31'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '546.58ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 21:50:31',
+  timerId: 'timer_1765210831238_ailgig',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:52:11'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:52:12'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1039.41ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:52:12',
+  timerId: 'timer_1765210931616_0vtis1',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 21:53:33'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 21:53:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1221.67ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:53:35',
+  timerId: 'timer_1765211013848_ih5h8f',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 22:00:28'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-08 22:00:28'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:28'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:28'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:29'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:29'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:33'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:00:34'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-08 22:00:34'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:12'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 22:13:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-08 22:13:16'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:16'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:16'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:17'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:17'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:19'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:13:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-08 22:13:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:15:37'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:15:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '664.26ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 22:15:38',
+  timerId: 'timer_1765212337440_juwx65',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:15:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:15:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '268.61ms',
+  category: 'fast',
+  timestamp: '2025-12-08 22:15:38',
+  timerId: 'timer_1765212338144_06lsv5',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-08 22:15:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  updates: [ 'name', 'phone', 'phoneCountryCode', 'address' ],
+  level: 'info',
+  message: '[Profile] Updating profile',
+  timestamp: '2025-12-08 22:16:12'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Profile updated via auth admin',
+  timestamp: '2025-12-08 22:16:13'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:16:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-08 22:16:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:16:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '495.65ms',
+  category: 'fast',
+  timestamp: '2025-12-08 22:16:32',
+  timerId: 'timer_1765212392045_6x0wr6',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  updates: [ 'name', 'phone', 'phoneCountryCode', 'address' ],
+  level: 'info',
+  message: '[Profile] Updating profile',
+  timestamp: '2025-12-08 22:17:18'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Profile updated via auth admin',
+  timestamp: '2025-12-08 22:17:19'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:17:25'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-08 22:17:25'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:17:25'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '486.27ms',
+  category: 'fast',
+  timestamp: '2025-12-08 22:17:25',
+  timerId: 'timer_1765212445041_87ej7h',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 22:17:28'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 22:17:28',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  hasEmail: true,
+  hasName: false,
+  hasPhone: false,
+  level: 'info',
+  message: 'User details found in database',
+  timestamp: '2025-12-08 22:17:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212449355_a8270ee1',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-12-08 22:17:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '562.31ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 22:17:29',
+  timerId: 'timer_1765212448793_45sxzn',
+  success: false,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  error: 'Missing mandatory parameters',
+  missingParams: 'phone',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:19:49'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 22:20:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-08 22:20:16'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:20:16'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:20:16'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:20:17'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:20:17'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:20:20'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-08 22:20:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-08 22:20:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:21:05'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:21:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '654.90ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 22:21:06',
+  timerId: 'timer_1765212665534_5542w0',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-08 22:21:12'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:21:19'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-08 22:21:19'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  error: 'TypeError: fetch failed',
+  level: 'error',
+  message: 'Error fetching subscription',
+  timestamp: '2025-12-08 22:21:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'none',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:21:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '10516.34ms',
+  category: 'critical',
+  timestamp: '2025-12-08 22:21:29',
+  timerId: 'timer_1765212679311_so4o0j',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'none',
+  level: 'error',
+  message: 'Critical business operation performance issue'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: true,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 22:21:31'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 22:21:31',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  hasEmail: true,
+  hasName: false,
+  hasPhone: false,
+  level: 'info',
+  message: 'User details found in database',
+  timestamp: '2025-12-08 22:21:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 22:21:32',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212692663_f0e94d1e',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212692663_f0e94d1e',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 22:21:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '681.88ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 22:21:32',
+  timerId: 'timer_1765212691984_nxj3s0',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212692663_f0e94d1e',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_yearly',
+  currency: 'INR',
+  hasPhone: true,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-08 22:21:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 22:21:48',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_yearly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  hasEmail: true,
+  hasName: false,
+  hasPhone: false,
+  level: 'info',
+  message: 'User details found in database',
+  timestamp: '2025-12-08 22:21:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-08 22:21:50',
+  orderId: undefined,
+  amount: 4999,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212710093_9235e534',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_yearly',
+  planTier: 'pro',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212710093_9235e534',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_yearly',
+  amount: 4999,
+  currency: 'INR',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-08 22:21:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1108.27ms',
+  category: 'slow',
+  timestamp: '2025-12-08 22:21:50',
+  timerId: 'timer_1765212708986_pb6lv7',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212710093_9235e534',
+  amount: 4999,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-08 22:31:22'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-08 22:31:23'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '900.78ms',
+  category: 'acceptable',
+  timestamp: '2025-12-08 22:31:23',
+  timerId: 'timer_1765213282464_fsuaz3',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreen Buddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-08 22:45:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-09 09:25:54'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-09 09:25:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '754.04ms',
+  category: 'acceptable',
+  timestamp: '2025-12-09 09:25:55',
+  timerId: 'timer_1765252554949_6wulxv',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-09 09:25:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-09 09:25:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '239.05ms',
+  category: 'fast',
+  timestamp: '2025-12-09 09:25:55',
+  timerId: 'timer_1765252555725_1e3shw',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-09 09:26:09'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  ip: '127.0.0.1',
+  level: 'info',
+  message: 'Getting subscription status',
+  timestamp: '2025-12-09 09:26:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  level: 'info',
+  message: '[Profile] Fetching profile',
+  timestamp: '2025-12-09 09:26:20'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  status: 'active',
+  plan: 'free',
+  level: 'info',
+  message: 'Subscription status retrieved',
+  timestamp: '2025-12-09 09:26:22'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1754.15ms',
+  category: 'slow',
+  timestamp: '2025-12-09 09:26:22',
+  timerId: 'timer_1765252580879_xsjlm4',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: true,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-09 09:26:28'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-09 09:26:28',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  hasEmail: true,
+  hasName: false,
+  hasPhone: false,
+  level: 'info',
+  message: 'User details found in database',
+  timestamp: '2025-12-09 09:26:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-09 09:26:29',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765252589209_68f109a3',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765252589209_68f109a3',
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-09 09:26:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '614.74ms',
+  category: 'acceptable',
+  timestamp: '2025-12-09 09:26:29',
+  timerId: 'timer_1765252588598_ehmm03',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765252589209_68f109a3',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-09 11:36:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-09 11:36:29'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 11:36:29'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 11:36:29'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 11:36:30'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 11:36:30'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 11:36:32'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 11:36:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-09 11:36:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-09 18:05:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-09 18:05:16'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:16'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:16'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:17'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:17'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:18'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:18'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-09 18:05:18'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-09 18:05:49'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-09 18:05:49'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:49'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:49'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:49'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:49'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:50'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:05:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-09 18:05:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-09 18:06:14'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-09 18:06:14'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:14'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:14'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:15'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:15'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:16'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-09 18:06:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-09 18:06:36'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-09 18:06:37'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:37'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:37'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:37'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:37'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:39'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-09 18:06:39'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-09 18:06:39'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-10 09:05:31'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-10 09:05:31'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:31'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:31'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:33'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:33'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-10 09:05:34'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-10 09:05:34'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:34'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:34'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:35'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-10 09:05:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-10 09:05:35'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:35'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:35'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:36'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:36'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:38'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:05:38'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-10 09:05:39'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-10 09:06:00'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-10 09:06:02'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:06:02'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:06:02'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:06:03'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:06:03'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:06:04'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 09:06:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-10 09:06:04'
+}
+{
+  message: 'SIGTERM received, shutting down gracefully',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:51'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  logLevel: 'info',
+  logDirectory: '/Users/akash/OffScreenBuddy/offscreen-buddy/backend/logs',
+  level: 'info',
+  message: 'Logger initialized',
+  timestamp: '2025-12-10 10:12:54'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  level: 'info',
+  message: 'Server configuration loaded',
+  timestamp: '2025-12-10 10:12:55'
+}
+{
+  message: 'Starting server initialization...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:55'
+}
+{
+  message: 'Checking Supabase connectivity...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:55'
+}
+{
+  message: 'Supabase connection successful',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:57'
+}
+{
+  message: 'Checking database tables...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:57'
+}
+{
+  message: 'Creating default subscription plans...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:58'
+}
+{
+  message: 'Running enhanced onboarding migration...',
+  level: 'info',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-10 10:12:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'development',
+  version: '1.0.0',
+  port: '3001',
+  features: {
+    healthMonitoring: true,
+    errorHandling: true,
+    structuredLogging: true
+  },
+  access: { local: 'http://localhost:3001', network: 'http://0.0.0.0:3001' },
+  level: 'info',
+  message: 'Server started successfully',
+  timestamp: '2025-12-10 10:12:58'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: false,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-10 10:26:52'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:26:52',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1499.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-10 10:26:53',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:26:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-10 10:26:53',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765342613738_0b360711',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 5,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765342613738_0b360711',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 5,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-10 10:26:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1738.35ms',
+  category: 'slow',
+  timestamp: '2025-12-10 10:26:53',
+  timerId: 'timer_1765342612007_wlyia2',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765342613738_0b360711',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: false,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-10 10:27:47'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:27:48',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:27:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-10 10:27:48',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765342668824_fdd890bf',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765342668824_fdd890bf',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-10 10:27:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '830.77ms',
+  category: 'acceptable',
+  timestamp: '2025-12-10 10:27:48',
+  timerId: 'timer_1765342667995_e3un2w',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765342668824_fdd890bf',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: false,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-10 10:35:49'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:35:49',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:35:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-10 10:35:50',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765343150859_1e54f8b8',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765343150859_1e54f8b8',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-10 10:35:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '983.64ms',
+  category: 'acceptable',
+  timestamp: '2025-12-10 10:35:50',
+  timerId: 'timer_1765343149879_l03dtl',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765343150859_1e54f8b8',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: false,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-10 10:36:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:36:43',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:36:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-10 10:36:43',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765343203842_59b0ca95',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765343203842_59b0ca95',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 1,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-10 10:36:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '657.30ms',
+  category: 'acceptable',
+  timestamp: '2025-12-10 10:36:43',
+  timerId: 'timer_1765343203190_qfvify',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765343203842_59b0ca95',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: false,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-10 10:41:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:41:15',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:41:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-10 10:41:16',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765343476266_48fa42e3',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765343476266_48fa42e3',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 2,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-10 10:41:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '862.90ms',
+  category: 'acceptable',
+  timestamp: '2025-12-10 10:41:16',
+  timerId: 'timer_1765343475405_4qiknk',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765343476266_48fa42e3',
+  amount: 499,
+  planTier: 'pro',
+  level: 'info',
+  message: 'Business operation performance'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  hasPhone: false,
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  level: 'info',
+  message: 'Creating PayU transaction',
+  timestamp: '2025-12-10 11:23:59'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 11:23:59',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 11:24:00'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  transactionType: 'subscription',
+  timestamp: '2025-12-10 11:24:00',
+  orderId: undefined,
+  amount: 499,
+  currency: 'INR',
+  status: undefined,
+  provider: 'PayU',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765346040274_916b8e47',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  planTier: 'pro',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'Payment transaction'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_mock-user_1765346040274_916b8e47',
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  amount: 499,
+  currency: 'INR',
+  hashGenerationTime: 0,
+  level: 'info',
+  message: 'PayU transaction created successfully',
+  timestamp: '2025-12-10 11:24:00'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1039.94ms',
+  category: 'slow',
+  timestamp: '2025-12-10 11:24:00',
+  timerId: 'timer_1765346039236_rnbj5o',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765346040274_916b8e47',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}

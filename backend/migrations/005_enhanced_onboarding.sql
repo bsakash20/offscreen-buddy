@@ -147,15 +147,6 @@ INSERT INTO countries (country_code, country_name, phone_code, currency_code, cu
 ('CU', 'Cuba', '+53', 'CUP', '₱')
 ON CONFLICT (country_code) DO NOTHING;
 
--- Add indexes for performance optimization
-CREATE INDEX IF NOT EXISTS idx_users_country_code ON users(country_code);
-CREATE INDEX IF NOT EXISTS idx_users_phone_verified ON users(phone_verified);
-CREATE INDEX IF NOT EXISTS idx_users_onboarding_completed ON users(onboarding_completed);
-CREATE INDEX IF NOT EXISTS idx_users_email_phone_verified ON users(email, phone_verified) WHERE phone_verified = true;
-CREATE INDEX IF NOT EXISTS idx_countries_code ON countries(country_code);
-CREATE INDEX IF NOT EXISTS idx_countries_phone_code ON countries(phone_code) WHERE phone_code IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_countries_active ON countries(is_active) WHERE is_active = true;
-
 -- Create function to validate and standardize phone numbers
 CREATE OR REPLACE FUNCTION validate_and_format_phone(
     phone_number TEXT,
@@ -280,11 +271,6 @@ CREATE TABLE IF NOT EXISTS user_onboarding_events (
     event_data JSONB DEFAULT '{}',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
-
--- Add indexes for onboarding events
-CREATE INDEX IF NOT EXISTS idx_onboarding_events_user_id ON user_onboarding_events(user_id);
-CREATE INDEX IF NOT EXISTS idx_onboarding_events_type ON user_onboarding_events(event_type);
-CREATE INDEX IF NOT EXISTS idx_onboarding_events_created_at ON user_onboarding_events(created_at);
 
 -- Log successful migration
 INSERT INTO payment_events (user_id, event_type, amount, currency, provider, provider_event_id, metadata)

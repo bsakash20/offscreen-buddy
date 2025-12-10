@@ -9576,3 +9576,1006 @@
   level: 'warn',
   message: 'Slow request detected'
 }
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-11-27 17:42:28',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1217.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-11-27 17:42:30',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  userId: 'tst@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-11-27 17:42:30'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1553.44ms',
+  category: 'slow',
+  timestamp: '2025-11-27 17:42:30',
+  timerId: 'timer_1764245548955_clp2zt',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_tst@email.com_1764245550503_0f719283',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'http_request',
+  requestId: 'req_1764245548932_1q7wjt78d',
+  method: 'POST',
+  url: '/api/payment/payu/create-transaction',
+  statusCode: 200,
+  duration: '1585.92ms',
+  category: 'slow',
+  responseSize: 689,
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  isBot: false,
+  timestamp: '2025-11-27 17:42:30',
+  queryParams: 0,
+  headers: {
+    host: 'localhost:3001',
+    'content-type': 'application/json',
+    connection: 'keep-alive',
+    accept: '*/*',
+    'user-agent': 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+    'content-length': '66',
+    'accept-language': 'en-IN,en;q=0.9',
+    'accept-encoding': 'gzip, deflate'
+  },
+  level: 'warn',
+  message: 'Slow request detected'
+}
+{
+  message: 'Failed to connect to Supabase',
+  level: 'error',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:47:53'
+}
+{
+  message: 'Failed to connect to Supabase',
+  level: 'error',
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  timestamp: '2025-12-07 18:50:07'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 09:14:34',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 09:14:35'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1047.57ms',
+  category: 'slow',
+  timestamp: '2025-12-08 09:14:35',
+  timerId: 'timer_1765165474790_jsk9n3',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765165475834_7d0e804b',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 11:17:04',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1083.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 11:17:06',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 11:17:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1353.38ms',
+  category: 'slow',
+  timestamp: '2025-12-08 11:17:06',
+  timerId: 'timer_1765172824958_01lwxf',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765172826306_33a1e290',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 11:33:43',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.von',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1131.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 11:33:44',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.von',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 11:33:44'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1359.37ms',
+  category: 'slow',
+  timestamp: '2025-12-08 11:33:44',
+  timerId: 'timer_1765173823009_3d4cmj',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.von_1765173824367_337b4f16',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 15:44:55',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_yearly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1732.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 15:44:57',
+  table: 'subscription_plans',
+  planId: 'pro_yearly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 15:44:57'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '2132.97ms',
+  category: 'slow',
+  timestamp: '2025-12-08 15:44:57',
+  timerId: 'timer_1765188895822_rwschn',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765188897948_84d99583',
+  amount: 4999,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 16:03:03',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.comm',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.comm',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 16:03:04'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 17:22:14',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'tst@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1222.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-08 17:22:15',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'tst@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 17:22:15'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1491.50ms',
+  category: 'slow',
+  timestamp: '2025-12-08 17:22:15',
+  timerId: 'timer_1765194734231_0ca0en',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_tst@email.com_1765194735719_9e978a6e',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 18:37:53',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'test@email.com',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-08 18:37:55'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1280.33ms',
+  category: 'slow',
+  timestamp: '2025-12-08 18:37:55',
+  timerId: 'timer_1765199273778_2389gv',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_test@email.com_1765199275054_cd030ab6',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 21:01:05',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765207866229_4f2d88d4',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-12-08 21:01:06'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1106.24ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:03:13',
+  timerId: 'timer_1765207991992_ruskb5',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 21:06:31',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765208192846_ac4e4695',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-12-08 21:06:32'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1027.65ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:06:32',
+  timerId: 'timer_1765208191819_n8xns7',
+  success: false,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  error: 'Missing mandatory parameters',
+  missingParams: 'phone',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1186.26ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:21:02',
+  timerId: 'timer_1765209061189_4274aa',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1516.37ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:38:35',
+  timerId: 'timer_1765210113929_uhz678',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1006.03ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:49:38',
+  timerId: 'timer_1765210777979_3fohwy',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1039.41ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:52:12',
+  timerId: 'timer_1765210931616_0vtis1',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1221.67ms',
+  category: 'slow',
+  timestamp: '2025-12-08 21:53:35',
+  timerId: 'timer_1765211013848_ih5h8f',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 22:17:28',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212449355_a8270ee1',
+  missingParams: [ 'phone' ],
+  payuParams: {
+    key: 'SET',
+    txnid: 'SET',
+    amount: 'SET',
+    productinfo: 'SET',
+    firstname: 'SET',
+    email: 'SET',
+    phone: 'MISSING',
+    surl: 'SET',
+    furl: 'SET'
+  },
+  level: 'error',
+  message: 'Missing mandatory PayU parameters',
+  timestamp: '2025-12-08 22:17:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  error: 'TypeError: fetch failed',
+  level: 'error',
+  message: 'Error fetching subscription',
+  timestamp: '2025-12-08 22:21:29'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '10516.34ms',
+  category: 'critical',
+  timestamp: '2025-12-08 22:21:29',
+  timerId: 'timer_1765212679311_so4o0j',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'none',
+  level: 'error',
+  message: 'Critical business operation performance issue'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 22:21:31',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-08 22:21:48',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_yearly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1108.27ms',
+  category: 'slow',
+  timestamp: '2025-12-08 22:21:50',
+  timerId: 'timer_1765212708986_pb6lv7',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_300fd34b-446c-40ab-878b-93fe5fdbf1f5_1765212710093_9235e534',
+  amount: 4999,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'get_subscription_status',
+  duration: '1754.15ms',
+  category: 'slow',
+  timestamp: '2025-12-09 09:26:22',
+  timerId: 'timer_1765252580879_xsjlm4',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/subscription/:userId',
+  status: 'active',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-09 09:26:28',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: '300fd34b-446c-40ab-878b-93fe5fdbf1f5',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:26:52',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'select',
+  query: 'fetch_plan_details',
+  duration: '1499.00ms',
+  category: 'slow',
+  success: true,
+  timestamp: '2025-12-10 10:26:53',
+  table: 'subscription_plans',
+  planId: 'pro_monthly',
+  found: true,
+  level: 'warn',
+  message: 'Slow database query detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:26:53'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1738.35ms',
+  category: 'slow',
+  timestamp: '2025-12-10 10:26:53',
+  timerId: 'timer_1765342612007_wlyia2',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765342613738_0b360711',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:27:48',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:27:48'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:35:49',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:35:50'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:36:43',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:36:43'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 10:41:15',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 10:41:16'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  event: 'payment_initiated',
+  severity: 'medium',
+  timestamp: '2025-12-10 11:23:59',
+  ip: '127.0.0.1',
+  userAgent: 'Expo/54.0.6 CFNetwork/3860.200.71 Darwin/25.2.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  planId: 'pro_monthly',
+  currency: 'INR',
+  level: 'warn',
+  message: 'Security event'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  requestId: undefined,
+  userId: 'mock-user',
+  level: 'warn',
+  message: 'Using fallback user details',
+  timestamp: '2025-12-10 11:24:00'
+}
+{
+  service: 'offscreen-buddy-backend',
+  environment: 'LOCAL',
+  version: '1.0.0',
+  operation: 'create_payu_transaction',
+  duration: '1039.94ms',
+  category: 'slow',
+  timestamp: '2025-12-10 11:24:00',
+  timerId: 'timer_1765346039236_rnbj5o',
+  success: true,
+  source: 'payu_service',
+  endpoint: '/create-transaction',
+  txnid: 'txn_mock-user_1765346040274_916b8e47',
+  amount: 499,
+  planTier: 'pro',
+  level: 'warn',
+  message: 'Slow business operation detected'
+}

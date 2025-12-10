@@ -205,6 +205,17 @@ class BackendConfigManager {
         refreshTokenExpiry: '30d',
       },
 
+      iap: {
+        apple: {
+          sharedSecret: process.env.APPLE_SHARED_SECRET,
+          verifyEndpoint: 'https://sandbox.itunes.apple.com/verifyReceipt',
+        },
+        google: {
+          clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+          privateKey: process.env.GOOGLE_PRIVATE_KEY,
+        },
+      },
+
       security: {
         corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
         rateLimitWindowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 900000,
@@ -382,6 +393,8 @@ class BackendConfigManager {
         return config.database;
       case 'auth':
         return config.auth;
+      case 'iap':
+        return config.iap;
       case 'security':
         return config.security;
       case 'logging':
@@ -416,6 +429,7 @@ module.exports = {
   getPayUConfig: () => configManager.getServiceConfig('payu'),
   getServerConfig: () => configManager.getServiceConfig('server'),
   getSecurityConfig: () => configManager.getServiceConfig('security'),
+  getIAPConfig: () => configManager.getServiceConfig('iap'),
 
   // Environment and config managers for direct access
   environmentDetector,

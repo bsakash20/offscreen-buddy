@@ -1,24 +1,65 @@
 {
   "expo": {
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ],
-    "web": {
-      "bundler": "metro"
+    "name": "OffScreen Buddy",
+    "slug": "offscreen-buddy",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "orientation": "portrait",
+    "icon": "./app/_assets/images/icon.png.svg",
+    "scheme": "offscreen-buddy",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "extra": {
+      "supabaseUrl": "${EXPO_PUBLIC_SUPABASE_URL}",
+      "supabaseAnonKey": "${EXPO_PUBLIC_SUPABASE_ANON_KEY}",
+      "payuMerchantKey": "${EXPO_PUBLIC_PAYU_MERCHANT_KEY}"
     },
-    "experiments": {
-      "tsconfigPaths": true,
-      "typedRoutes": true
+    "splash": {
+      "image": "./app/_assets/images/splash-icon.png.svg",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a1a2e"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.offscreenbuddy"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/images/icon.png.svg",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./app/_assets/images/icon.png.svg",
+        "backgroundColor": "#1a1a2e"
+      },
+      "package": "com.offscreenbuddy",
+      "permissions": [
+        "android.permission.VIBRATE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM"
+      ]
+    },
+    "web": {
+      "favicon": "./app/_assets/images/favicon.png.svg",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "root": "./app"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser",
+      [
+        "expo-notifications",
+        {
+          "color": "#1a1a2e",
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      "react-native-iap"
+    ],
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
     }
   }
 }

@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 3001;
 
 // Import middleware
 const { errorHandler, notFound } = require('./middleware/errorHandler');
-const { requestLogger } = require('./middleware/performanceLogger');
 const { logger } = require('./config/logger');
 
 // Import routes
@@ -29,7 +28,9 @@ const analyticsRoutes = require('./routes/analytics');
 const settingsRoutes = require('./routes/settings');
 const payuRoutes = require('./routes/payu');
 const payuWebhookRoutes = require('./routes/payu-webhooks');
+const iapRoutes = require('./routes/iap');
 const healthRoutes = require('./routes/health');
+const profileRoutes = require('./routes/profile');
 
 // Import PayU security configuration
 const payuSecurity = require('./config/payuSecurity');
@@ -83,20 +84,16 @@ app.use('/api/payu/webhook', express.raw({
   limit: payuSecurity.maxWebhookSize
 }));
 
-// Performance and request logging middleware (must be before routes)
-app.use(requestLogger);
-
-// Health check endpoints
-
-
 // API Routes with PayU mobile app security
 // Health check endpoints (mounted at /api/health for consistency)
 app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/profile', profileRoutes);
 app.use('/api/payment/subscriptions', subscriptionRoutes);
 app.use('/api/payment/payu', payuRoutes);
 app.use('/api/payu', payuWebhookRoutes);
+app.use('/api/iap', iapRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/settings', settingsRoutes);
 
@@ -106,7 +103,6 @@ logger.info('Server configuration loaded', {
   environment: process.env.NODE_ENV || 'development',
   features: {
     healthMonitoring: true,
-    performanceLogging: true,
     errorHandling: true,
     structuredLogging: true
   }
@@ -152,7 +148,6 @@ async function startServer() {
         environment: process.env.NODE_ENV || 'development',
         features: {
           healthMonitoring: true,
-          performanceLogging: true,
           errorHandling: true,
           structuredLogging: true
         },
@@ -165,12 +160,12 @@ async function startServer() {
       // Console output for user feedback
       console.log(`\n🚀 Server running on port ${PORT} (accessible on all interfaces)`);
       console.log(`📱 Mobile apps can access the server via your computer's local IP address`);
-      console.log(`💰 Payment provider: PayU (${process.env.NODE_ENV === 'production' ? 'Production' : 'Test Environment'})`);
+      console.log(`💰 Payment providers: PayU (${process.env.NODE_ENV === 'production' ? 'Production' : 'Test Environment'}), Native IAP`);
       console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`💾 Database: Supabase`);
-      console.log(`📊 Features: Health monitoring, performance logging, error handling`);
+      console.log(`📊 Features: Health monitoring, error handling, in-app purchases`);
       console.log(`🔑 PayU Keys: ${process.env.PAYU_MERCHANT_KEY ? '✓ Configured' : '✗ Missing'}`);
-      console.log(`\n✅ OffScreen Buddy Backend with comprehensive logging is ready!\n`);
+      console.log(`\n✅ OffScreen Buddy Backend is ready!\n`);
     });
 
   } catch (error) {
@@ -212,12 +207,15 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 // Start the server with initialization
-startServer().catch(error => {
-  logger.error('Server initialization failed', {
-    error: error.message,
-    stack: error.stack
+// Only start server if run directly
+if (require.main === module) {
+  startServer().catch(error => {
+    logger.error('Server initialization failed', {
+      error: error.message,
+      stack: error.stack
+    });
+    process.exit(1);
   });
-  process.exit(1);
-});
+}
 
 module.exports = app;

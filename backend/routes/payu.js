@@ -227,7 +227,7 @@ router.post('/create-transaction',
         });
       }
 
-      const { planId, userId, currency = 'INR' } = req.body;
+      const { planId, userId, currency = 'INR', phone: requestPhone } = req.body;
       const requestId = req.id;
 
       logger.info('Creating PayU transaction', {
@@ -235,6 +235,7 @@ router.post('/create-transaction',
         userId,
         planId,
         currency,
+        hasPhone: !!requestPhone,
         ip: req.ip,
         userAgent: req.get('User-Agent')
       });
@@ -422,7 +423,7 @@ router.post('/create-transaction',
       }
 
       const txnid = 'txn_' + userId + '_' + Date.now() + '_' + uuidv4().substr(0, 8);
-      const phone = user.phone || '';
+      const phone = requestPhone || user.phone || '';
 
       // PayU parameters
       const payuParams = {

@@ -17,13 +17,6 @@ ADD COLUMN IF NOT EXISTS device_id VARCHAR(255),
 ADD COLUMN IF NOT EXISTS platform VARCHAR(100),
 ADD COLUMN IF NOT EXISTS app_version VARCHAR(20);
 
--- Add indexes for performance optimization
-CREATE INDEX IF NOT EXISTS idx_users_country_code ON users(country_code);
-CREATE INDEX IF NOT EXISTS idx_users_phone_verified ON users(phone_verified);
-CREATE INDEX IF NOT EXISTS idx_users_onboarding_completed ON users(onboarding_completed);
-CREATE INDEX IF NOT EXISTS idx_users_is_active ON users(is_active) WHERE is_active = true;
-CREATE INDEX IF NOT EXISTS idx_users_device_id ON users(device_id);
-
 -- Update existing users to have default values
 UPDATE users 
 SET 

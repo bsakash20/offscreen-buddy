@@ -10,9 +10,3 @@ CREATE TABLE IF NOT EXISTS public.payment_events (
   metadata JSONB,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
-
--- Create indexes for better query performance
-CREATE INDEX IF NOT EXISTS idx_payment_events_user_id ON public.payment_events(user_id);
-CREATE INDEX IF NOT EXISTS idx_payment_events_created_at ON public.payment_events(created_at);
-CREATE INDEX IF NOT EXISTS idx_payment_events_event_type ON public.payment_events(event_type);
-CREATE INDEX IF NOT EXISTS idx_payment_events_provider ON public.payment_events(provider);

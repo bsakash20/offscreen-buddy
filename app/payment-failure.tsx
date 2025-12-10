@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Colors from './assets/constants/colors';
+import Colors from './_assets/constants/colors';
 
 export default function PaymentFailure() {
   const goBack = () => {

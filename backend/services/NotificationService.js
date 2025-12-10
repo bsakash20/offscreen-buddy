@@ -220,39 +220,6 @@ class NotificationService {
     }
 
     /**
-     * Send batch notifications
-     */
-    async sendBatchNotifications(notifications) {
-        try {
-            const results = [];
-
-            for (const { userId, notification } of notifications) {
-                const result = await this.sendPushNotification(userId, notification);
-                results.push({
-                    userId,
-                    ...result
-                });
-
-                // Add small delay to avoid rate limiting
-                await new Promise(resolve => setTimeout(resolve, 100));
-            }
-
-            return {
-                success: true,
-                results,
-                totalSent: results.filter(r => r.success).length,
-                totalFailed: results.filter(r => !r.success).length
-            };
-        } catch (error) {
-            console.error('Failed to send batch notifications:', error);
-            return {
-                success: false,
-                error: error.message
-            };
-        }
-    }
-
-    /**
      * Get user's notification history
      */
     getNotificationHistory(userId, limit = 50) {

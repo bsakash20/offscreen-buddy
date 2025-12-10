@@ -15,9 +15,9 @@ const router = express.Router();
 /**
  * Health check endpoint - basic system status
  */
-router.get('/health', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
   const startTime = Date.now();
-  
+
   try {
     // Basic health checks
     const healthStatus = {
@@ -41,7 +41,7 @@ router.get('/health', asyncHandler(async (req, res) => {
     const memUsage = process.memoryUsage();
     const memoryUsagePercent = (memUsage.heapUsed / memUsage.heapTotal) * 100;
     healthStatus.checks.memory.usage = Math.round(memoryUsagePercent);
-    
+
     if (memoryUsagePercent > 90) {
       healthStatus.checks.memory.status = 'critical';
       healthStatus.status = 'unhealthy';
@@ -56,15 +56,15 @@ router.get('/health', asyncHandler(async (req, res) => {
     try {
       const dbStartTime = Date.now();
       const supabaseConfig = getSupabaseConfig();
-      const supabase = createClient(supabaseConfig.url, supabase.serviceKey);
-      
+      const supabase = createClient(supabaseConfig.url, supabaseConfig.serviceKey);
+
       // Simple query to test connectivity
       const { error } = await supabase
         .from('health_check')
         .select('*')
         .limit(1)
         .maybeSingle();
-      
+
       // If table doesn't exist, that's okay - just check if we can connect
       const dbLatency = Date.now() - dbStartTime;
       healthStatus.checks.database = {
@@ -82,8 +82,8 @@ router.get('/health', asyncHandler(async (req, res) => {
     }
 
     // Set appropriate HTTP status code
-    const statusCode = healthStatus.status === 'healthy' ? 200 : 
-                     healthStatus.status === 'degraded' ? 200 : 503;
+    const statusCode = healthStatus.status === 'healthy' ? 200 :
+      healthStatus.status === 'degraded' ? 200 : 503;
 
     res.status(statusCode).json(healthStatus);
 
@@ -110,9 +110,9 @@ router.get('/health', asyncHandler(async (req, res) => {
 /**
  * Detailed health check with all system metrics
  */
-router.get('/health/detailed', asyncHandler(async (req, res) => {
+router.get('/detailed', asyncHandler(async (req, res) => {
   const startTime = Date.now();
-  
+
   try {
     const detailedHealth = {
       status: 'healthy',
@@ -147,10 +147,10 @@ router.get('/health/detailed', asyncHandler(async (req, res) => {
 
     // Determine overall health
     const hasCriticalIssues = Object.values(serviceChecks).some(service => service.status === 'unhealthy') ||
-                             Object.values(dependencyChecks).some(dep => dep.status === 'unhealthy');
-    
+      Object.values(dependencyChecks).some(dep => dep.status === 'unhealthy');
+
     const hasWarnings = Object.values(serviceChecks).some(service => service.status === 'warning') ||
-                       Object.values(dependencyChecks).some(dep => dep.status === 'warning');
+      Object.values(dependencyChecks).some(dep => dep.status === 'warning');
 
     if (hasCriticalIssues) {
       detailedHealth.status = 'unhealthy';
@@ -158,8 +158,8 @@ router.get('/health/detailed', asyncHandler(async (req, res) => {
       detailedHealth.status = 'degraded';
     }
 
-    const statusCode = detailedHealth.status === 'healthy' ? 200 : 
-                     detailedHealth.status === 'degraded' ? 200 : 503;
+    const statusCode = detailedHealth.status === 'healthy' ? 200 :
+      detailedHealth.status === 'degraded' ? 200 : 503;
 
     res.status(statusCode).json(detailedHealth);
 
@@ -280,7 +280,7 @@ router.get('/ready', asyncHandler(async (req, res) => {
  */
 router.get('/logs/stream', asyncHandler(async (req, res) => {
   const { level = 'info', limit = 100 } = req.query;
-  
+
   try {
     // This would typically stream logs from a log aggregator
     // For now, return performance summary as a form of real-time metrics
@@ -312,10 +312,10 @@ router.get('/logs/stream', asyncHandler(async (req, res) => {
 router.get('/benchmark', asyncHandler(async (req, res) => {
   const { iterations = 100 } = req.query;
   const iterCount = parseInt(iterations) || 100;
-  
+
   try {
     const benchmarkResults = await runBenchmark(iterCount);
-    
+
     res.json({
       timestamp: new Date().toISOString(),
       iterations: iterCount,
@@ -351,13 +351,13 @@ async function checkExternalServices() {
     const startTime = Date.now();
     const supabaseConfig = getSupabaseConfig();
     const supabase = createClient(supabaseConfig.url, supabase.serviceKey);
-    
+
     // Simple query to test
     const { error } = await supabase
       .from('health_check')
       .select('*')
       .limit(1);
-    
+
     services.supabase = {
       status: 'healthy',
       latency: Date.now() - startTime,
@@ -375,9 +375,9 @@ async function checkExternalServices() {
   try {
     const startTime = Date.now();
     const axios = require('axios');
-    
+
     await axios.get('https://www.google.com', { timeout: 5000 });
-    
+
     services.payu = {
       status: 'healthy',
       latency: Date.now() - startTime,
@@ -449,17 +449,17 @@ async function runBenchmark(iterations) {
 
   for (let i = 0; i < iterations; i++) {
     const startTime = Date.now();
-    
+
     try {
       // Simple benchmark operation
       const data = Array.from({ length: 1000 }, (_, index) => index * index);
       const sum = data.reduce((acc, val) => acc + val, 0);
-      
+
       const responseTime = Date.now() - startTime;
       results.totalTime += responseTime;
       results.minResponseTime = Math.min(results.minResponseTime, responseTime);
       results.maxResponseTime = Math.max(results.maxResponseTime, responseTime);
-      
+
     } catch (error) {
       results.errors++;
     }

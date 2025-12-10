@@ -162,43 +162,6 @@ router.delete('/cancel/:notificationId', async (req, res) => {
 });
 
 /**
- * POST /api/notifications/batch-send
- * Send notifications to multiple users
- */
-router.post('/batch-send', [
-    body('notifications').isArray({ min: 1 }).withMessage('Notifications array is required'),
-    body('notifications.*.userId').isString().notEmpty().withMessage('User ID is required for each notification'),
-    body('notifications.*.notification').isObject().withMessage('Valid notification object is required'),
-], validateRequest, async (req, res) => {
-    try {
-        const { notifications } = req.body;
-
-        console.log(`Batch sending ${notifications.length} notifications`);
-
-        // Add server metadata to each notification
-        const enrichedNotifications = notifications.map(item => ({
-            ...item,
-            notification: {
-                ...item.notification,
-                id: item.notification.id || `batch_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-                timestamp: Date.now(),
-                serverTimestamp: new Date().toISOString()
-            }
-        }));
-
-        const result = await notificationService.sendBatchNotifications(enrichedNotifications);
-
-        res.json(result);
-    } catch (error) {
-        console.error('Error in batch send route:', error);
-        res.status(500).json({
-            success: false,
-            error: 'Failed to send batch notifications'
-        });
-    }
-});
-
-/**
  * GET /api/notifications/history/:userId
  * Get user's notification history
  */

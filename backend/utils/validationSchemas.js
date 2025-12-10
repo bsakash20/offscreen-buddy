@@ -346,81 +346,6 @@ class ValidationSchemaManager {
     }
 
     /**
-     * Validate and sanitize batch inputs
-     */
-    validateBatch(data, rules) {
-        const results = {
-            isValid: true,
-            sanitized: {},
-            errors: {},
-            warnings: []
-        };
-
-        Object.entries(rules).forEach(([field, rule]) => {
-            const value = data[field];
-            const fieldErrors = [];
-
-            // Required field validation
-            if (rule.required && (value === undefined || value === null || value === '')) {
-                fieldErrors.push(`${field} is required`);
-                results.isValid = false;
-                return;
-            }
-
-            if (value === undefined || value === null) {
-                results.sanitized[field] = value;
-                return;
-            }
-
-            // Type validation
-            if (rule.type && typeof value !== rule.type) {
-                fieldErrors.push(`${field} must be of type ${rule.type}`);
-                results.isValid = false;
-                return;
-            }
-
-            // Length validation
-            if (rule.minLength && String(value).length < rule.minLength) {
-                fieldErrors.push(`${field} must be at least ${rule.minLength} characters`);
-                results.isValid = false;
-            }
-
-            if (rule.maxLength && String(value).length > rule.maxLength) {
-                fieldErrors.push(`${field} must be at most ${rule.maxLength} characters`);
-                results.isValid = false;
-            }
-
-            // Pattern validation
-            if (rule.pattern && !rule.pattern.test(String(value))) {
-                fieldErrors.push(`${field} format is invalid`);
-                results.isValid = false;
-            }
-
-            // Whitelist validation
-            if (rule.whitelist && !this.validateWhitelist(String(value), rule.whitelist)) {
-                fieldErrors.push(`${field} contains invalid characters`);
-                results.isValid = false;
-            }
-
-            // Blocked pattern check
-            if (rule.checkBlocked !== false && this.checkBlockedPatterns(String(value))) {
-                fieldErrors.push(`${field} contains potentially dangerous content`);
-                results.isValid = false;
-            }
-
-            // Sanitize input
-            const sanitizedValue = rule.sanitize !== false ? this.sanitizeInput(String(value), rule.type || 'string') : value;
-            results.sanitized[field] = sanitizedValue;
-
-            if (fieldErrors.length > 0) {
-                results.errors[field] = fieldErrors;
-            }
-        });
-
-        return results;
-    }
-
-    /**
      * Express middleware wrapper for validation schemas
      */
     validate(schemaName) {
@@ -500,7 +425,6 @@ module.exports = {
     validateDeviceRegistration,
 
     // Utility functions
-    validateBatch: (data, rules) => validationSchemaManager.validateBatch(data, rules),
     sanitizeInput: (input, type) => validationSchemaManager.sanitizeInput(input, type),
     validateWhitelist: (input, patternType) => validationSchemaManager.validateWhitelist(input, patternType),
     checkBlockedPatterns: (input, patternType) => validationSchemaManager.checkBlockedPatterns(input, patternType),

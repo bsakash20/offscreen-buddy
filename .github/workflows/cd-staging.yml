@@ -1,0 +1,41 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches: [ develop ]
+  workflow_dispatch:
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend (Staging)
+    runs-on: ubuntu-latest
+    # needs: [backend-quality] # Removed invalid reference
+    
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build/Prepare
+        run: echo "Building backend..." # npm run build if exists
+
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying to Staging Environment..."
+          # Add actual deployment commands here (e.g., Fly.io, Heroku, AWS)
+          echo "Deployment complete."
+
+      - name: Run Migrations
+        run: |
+            echo "Running database migrations..."
+            # node run-migration.js

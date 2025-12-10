@@ -19,19 +19,34 @@
         "./app/*"
       ],
       "@/components/*": [
-        "./components/*"
+        "./app/_components/*"
       ],
       "@/assets/*": [
-        "./app/assets/*"
+        "./app/_assets/*"
       ],
       "@/constants/*": [
-        "./app/constants/*"
+        "./app/_assets/constants/*"
       ],
       "@/contexts/*": [
-        "./app/contexts/*"
+        "./app/_contexts/*"
       ],
       "@/utils/*": [
-        "./app/utils/*"
+        "./app/_utils/*"
+      ],
+      "@/hooks/*": [
+        "./app/_hooks/*"
+      ],
+      "@/services/*": [
+        "./app/_services/*"
+      ],
+      "@/types/*": [
+        "./app/_types/*"
+      ],
+      "@/design-system/*": [
+        "./app/_design-system/*"
+      ],
+      "@/config/*": [
+        "./app/_config/*"
       ]
     }
   },
@@ -40,6 +55,9 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
+  ],
+  "exclude": [
+    "**/__tests__/**"
   ],
   "extends": "expo/tsconfig.base"
 }

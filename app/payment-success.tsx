@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import Colors from './assets/constants/colors';
-import { useSupabaseAuth } from './contexts/SupabaseAuthContext';
-import { PayUPayment } from './services/Payment/PayUService';
+import Colors from './_assets/constants/colors';
+import { useSupabaseAuth } from './_contexts/SupabaseAuthContext';
+import { payUService } from './_services/Payment/PayUService';
 
 export default function PaymentSuccess() {
   const { updateUserSubscription } = useSupabaseAuth();
@@ -40,7 +40,7 @@ export default function PaymentSuccess() {
           udf2: urlParams.get('udf2'), // planId
         };
 
-        const result = await PayUPayment.verifyPayment(callbackData);
+        const result = await payUService.verifyPayment(callbackData as any);
 
         if (result) {
           // Update user subscription
@@ -50,8 +50,8 @@ export default function PaymentSuccess() {
               'timer_lock',
               'smart_notifications',
               'analytics',
-              'automation',
-              'security',
+
+
               'team',
               'white_label'
             ]

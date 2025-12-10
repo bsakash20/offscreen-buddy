@@ -574,29 +574,6 @@ class AutomatedMilestoneValidator {
         // Implementation would integrate with notification system
         console.log(`Notification: ${type} for milestone ${milestone.id}`, data);
     }
-
-    /**
-     * Batch validate multiple milestones
-     */
-    async validateMultipleMilestones(milestoneIds, options = {}) {
-        const results = [];
-        const concurrency = options.concurrency || 5;
-
-        for (let i = 0; i < milestoneIds.length; i += concurrency) {
-            const batch = milestoneIds.slice(i, i + concurrency);
-            const batchPromises = batch.map(id => this.validateMilestone(id, options));
-
-            try {
-                const batchResults = await Promise.all(batchPromises);
-                results.push(...batchResults);
-            } catch (error) {
-                console.error('Error in batch validation:', error);
-                // Continue with remaining batches
-            }
-        }
-
-        return results;
-    }
 }
 
 module.exports = AutomatedMilestoneValidator;
